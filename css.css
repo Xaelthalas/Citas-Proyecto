@@ -1,0 +1,82 @@
+body {
+    background-color: #E8F5E9; /* verde clarito */
+    color: #333; /* negro */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: #2E7D32; /* verde más oscuro */
+    text-align: center;
+    margin-top: 20px;
+}
+/*tablita*/
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF; /* blanco */
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd; /* gris claro */
+}
+
+th {
+    background-color: #81C784; /* verde más claro */
+    color: #FFFFFF; /* blanco */
+}
+
+tr:nth-child(even) {
+    background-color: #F5F5F5; /* gris más claro */
+}
+
+tr:hover {
+    background-color: #E0E0E0; /* gris claro al pasar el mouse */
+}
+
+/*formulario login*/
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ 
+}
+
+.login-container form {
+    width: 300px;
+    margin: 10px auto; /* Ajusta el margen horizontal */
+    text-align: center;
+}
+
+.login-container form input,
+.login-container form button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.login-container form button {
+    margin-bottom: 20px;
+}
+
+
+/* Estilos para el formulario de registro */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+}
+.form-container form {
+    width: 300px;
+    margin: 10px auto; /* Ajusta el margen horizontal */
+    text-align: center;
+}
+
