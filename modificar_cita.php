@@ -61,6 +61,7 @@ if (isset($_GET['id'])) {
         <input type="time" id="hora" name="hora" required><br><br>
 
         <button type="submit">Modificar Cita</button>
+        <button onclick="window.location.href='menuusuario.php'" class="login-button">Volver</button>
     </form>
 </body>
 </html>

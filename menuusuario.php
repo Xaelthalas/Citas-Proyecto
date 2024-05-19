@@ -24,6 +24,7 @@ $id_usuario = $_SESSION['id_usuario'];
     <title>Menú de Usuario</title>
 </head>
 <body>
+
     <h2>Menú de Usuario</h2>
     <ul>
         <li><a href="reservar_cita.php">Reservar una cita</a></li>

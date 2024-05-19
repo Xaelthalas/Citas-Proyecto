@@ -57,29 +57,37 @@ class Citas {
     }
 
     // Método para mostrar las citas del usuario
-    public function mostrarCitas($id_usuario) {
-        // Consulta SQL para obtener las citas del usuario
-        $consulta = "SELECT ID, Fecha, Hora, Estado FROM Citas WHERE DNI_usuario = $id_usuario";
-        
-        // Ejecutamos la consulta
-        $resultado = $this->ejecuta_SQL($consulta);
+public function mostrarCitas($id_usuario) {
+    // Consulta SQL para obtener las citas del usuario
+    $consulta = "SELECT ID, Fecha, Hora, Estado FROM Citas WHERE DNI_usuario = $id_usuario";
     
-        // Verificamos si se obtuvieron resultados
-        if ($resultado->num_rows > 0) {
-            while ($fila = $resultado->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $fila['ID'] . "</td>";
-                echo "<td>" . $fila['Fecha'] . "</td>";
-                echo "<td>" . $fila['Hora'] . "</td>";
-                echo "<td>" . $fila['Estado'] . "</td>";
-                echo "<td><a href='eliminar_cita.php?id=" . $fila['ID'] . "'>Eliminar</a> &nbsp; <a href='modificar_cita.php?id=" . $fila['ID'] . "'>Modificar</a></td>";
-                echo "</tr>";
-            }
-        } else {
-            echo "<tr><td colspan='6'>No hay citas disponibles.</td></tr>";
-        }
-    }
+    // Ejecutamos la consulta
+    $resultado = $this->ejecuta_SQL($consulta);
 
+    // Verificamos si se obtuvieron resultados
+    if ($resultado->num_rows > 0) {
+        while ($fila = $resultado->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $fila['ID'] . "</td>";
+            echo "<td>" . $fila['Fecha'] . "</td>";
+            echo "<td>" . $fila['Hora'] . "</td>";
+            echo "<td>" . $fila['Estado'] . "</td>";
+            
+            // Verificar si el estado es "Finalizado"
+            if ($fila['Estado'] !== 'Finalizada') {
+                // Mostrar los enlaces "Eliminar" y "Modificar"
+                echo "<td><a href='eliminar_cita.php?id=" . $fila['ID'] . "'>Eliminar</a> &nbsp; <a href='modificar_cita.php?id=" . $fila['ID'] . "'>Modificar</a></td>";
+            } else {
+                // Si el estado es "Finalizado", mostrar un mensaje sin enlaces
+                echo "<td>Cita finalizada</td>";
+            }
+            
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='6'>No hay citas disponibles.</td></tr>";
+    }
+}
     // Método para dar de alta a un nuevo usuario
     public function altaUsuario($dni, $nombre, $apellidos, $contrasena) {
         // Construimos la consulta SQL para insertar un nuevo usuario
@@ -123,6 +131,25 @@ class Citas {
             return false;
         }
     }
+  // Método para obtener el nombre del usuario por su ID
+public function obtenerNombreUsuario($id_usuario) {
+    // Consulta SQL para obtener el nombre del usuario por su ID
+    $consulta = "SELECT Nombre FROM Usuarios WHERE DNI = $id_usuario";
+    // Ejecutamos la consulta
+    $resultado = $this->ejecuta_SQL($consulta);
+
+    // Verificamos si se obtuvieron resultados
+    if ($resultado && $resultado->num_rows > 0) {
+        $fila = $resultado->fetch_assoc();
+        
+        return $fila['Nombre'];
+    } else {
+        return ""; // Devuelve una cadena vacía si no se encuentra el usuario
+    }
+}
+
+    
+
 
     // Método para verificar y actualizar el estado de las citas pendientes
     public function actualizarEstadoCitas() {
