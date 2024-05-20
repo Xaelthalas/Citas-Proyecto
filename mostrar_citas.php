@@ -16,6 +16,8 @@ $id_usuario = $_SESSION['id_usuario'];
 
 // Crear un objeto de la clase Citas
 $citas = new Citas();
+$nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
+
 ?>
 
 <!DOCTYPE html>
@@ -25,8 +27,18 @@ $citas = new Citas();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Citas</title>
     <link rel="stylesheet" type="text/css" href="css.css">
+    <!-- Enlace al CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<div class="header">
+        <!-- Nombre de usuario -->
+        <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
+        <!-- Botón para cerrar sesión -->
+        <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
+            <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+        </button>
+    </div>
     <h2>Mis Citas</h2>
     <table>
         <thead>
@@ -39,9 +51,18 @@ $citas = new Citas();
             </tr>
         </thead>
         <tbody>
-            <?php         $citas->actualizarEstadoCitas();
+            <?php $citas->actualizarEstadoCitas();
             $citas->mostrarCitas($id_usuario); ?>
         </tbody>
     </table>
+    <div class="container">
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-1">
+                <button type="button" class="btn btn-primary" onclick="window.location.href='menuusuario.php'">Volver</button>
+            </div>
+        </div>
+    </div>
+    <!-- Enlace al JS de Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -20,16 +20,56 @@ $citas = new Citas();
 // Obtener el nombre del usuario
 $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 
+$message = "";
+$message_type = "";
+
 // Verificar si se han enviado los datos del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_POST["hora"])) {
-    // Resto del código para procesar la reserva de citas...
+    // Obtener la fecha y la hora del formulario
+    $fecha = $_POST["fecha"];
+    $hora = $_POST["hora"];
+    
+    // Verificar que la fecha y la hora no estén vacías
+    if (!empty($fecha) && !empty($hora)) {
+        // Verificar la disponibilidad de la cita
+        if ($citas->verificarDisponibilidadCita($fecha, $hora)) {
+            // Verificar si el usuario tiene una cita pendiente
+            if (!$citas->tieneCitaPendiente($id_usuario)) {
+                // Reservar la cita
+                if ($citas->reservarCita($id_usuario, $fecha, $hora, 'Pendiente')) {
+                    $message = "La cita se ha registrado correctamente.";
+                    $message_type = "success";
+                } else {
+                    $message = "Error al registrar la cita. Por favor, inténtelo nuevamente.";
+                    $message_type = "danger";
+                }
+            } else {
+                $message = "Ya tienes una cita pendiente. No puedes reservar otra hasta que la cita actual sea finalizada.";
+                $message_type = "warning";
+            }
+        } else {
+            $message = "La fecha y hora seleccionadas no están disponibles. Por favor, elija otra fecha y hora.";
+            $message_type = "warning";
+        }
+    } else {
+        $message = "Por favor, seleccione una fecha y hora válidas.";
+        $message_type = "warning";
+    }
+    
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Cita</title>
+    <!-- Incluir Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Enlace al CSS de Vanilla JS Datepicker -->
+    <link href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css" rel="stylesheet">
+    <style>
         /* Estilos para el encabezado */
         .header {
             background-color: #4CAF50; /* verde */
@@ -62,57 +102,81 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
             margin-left: 20px; /* Margen izquierdo para separar del borde */
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="css.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Cita</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var dateInput = document.getElementById('fecha');
-            var today = new Date().toISOString().split('T')[0];
-            dateInput.setAttribute('min', today);
-            dateInput.addEventListener('input', function () {
-                var day = new Date(this.value).getUTCDay();
-                if (day == 6 || day == 0) {
-                    this.setCustomValidity('Las citas no están disponibles los sábados y domingos.');
-                } else {
-                    this.setCustomValidity('');
-                }
-            });
-        });
-    </script>
 </head>
 <body>
 <!-- Encabezado fijo -->
-
-
 <div class="header">
     <!-- Nombre de usuario -->
-    <span>Bienvenido, <?php echo $nombre_usuario; ?></span>
+    <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
     <!-- Botón para cerrar sesión -->
-    <button onclick="window.location.href='cerrar_sesion.php'">Cerrar Sesión</button>
+    <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">Cerrar Sesión</button>
 </div>
 
-<h2>Registro de Cita</h2>
-<form align="center" action="reservar_cita.php" method="POST">
-    <label for="fecha">Fecha de la cita:</label>
-    <input type="date" id="fecha" name="fecha" required><br><br>
-    <label for="hora">Hora de la cita:</label>
-    <select id="hora" name="hora" required>
-        <?php
-        // Generar las opciones de hora en intervalos de 10 minutos entre las 11:00 y las 14:00
-        $hora_inicio = strtotime("11:00");
-        $hora_fin = strtotime("14:00");
-        $intervalo = 10 * 60; // 10 minutos en segundos
+<div class="container mt-5">
+    <h2 class="text-center">Registro de Cita</h2>
 
-        for ($hora = $hora_inicio; $hora < $hora_fin; $hora += $intervalo) {
-            $hora_formateada = date("H:i", $hora);
-            echo "<option value=\"$hora_formateada\">$hora_formateada</option>";
+    <?php if (!empty($message)): ?>
+        <div class="alert alert-<?php echo $message_type; ?>" role="alert">
+            <?php echo $message; ?>
+        </div>
+    <?php endif; ?>
+
+    <form class="mt-4" action="reservar_cita.php" method="POST">
+        <div class="form-group">
+            <label for="datepicker">Selecciona una fecha:</label>
+            <input type="date" id="datepicker" class="form-control mb-3" name="fecha">
+        </div>
+        <div class="form-group">
+            <label for="timepicker">Selecciona una hora:</label>
+            <select id="timepicker" class="form-control" name="hora">
+                <!-- Las opciones se agregarán mediante JavaScript -->
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Reservar Cita</button>
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='menuusuario.php'">Volver</button>
+    </form>
+</div>
+
+<!-- Enlace al JS de Vanilla JS Datepicker -->
+<script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar el datepicker
+    const datepicker = new Datepicker(document.getElementById('datepicker'), {
+        format: 'yyyy-mm-dd',
+        daysOfWeekDisabled: [0, 6], // 0 = Domingo, 6 = Sábado
+        language: 'es',
+    });
+
+    // Función para generar las opciones de tiempo
+    function generateTimeOptions() {
+        const timepicker = document.getElementById('timepicker');
+        const startHour = 11;
+        const endHour = 14;
+        const interval = 10; // minutos
+
+        for (let hour = startHour; hour < endHour; hour++) {
+            for (let minutes = 0; minutes < 60; minutes += interval) {
+                const timeOption = document.createElement('option');
+                const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+                timeOption.value = `${hour}:${formattedMinutes}`;
+                timeOption.text = `${hour}:${formattedMinutes}`;
+                timepicker.appendChild(timeOption);
+            }
         }
-        ?>
-    </select><br><br>
-    <button type="submit">Reservar Cita</button>
-    <button onclick="window.location.href='menuusuario.php'" class="login-button">Volver</button>
-</form>
+
+        // Añadir la opción de las 14:00
+        const endOption = document.createElement('option');
+        endOption.value = `14:00`;
+        endOption.text = `14:00`;
+        timepicker.appendChild(endOption);
+    }
+
+    // Generar las opciones de tiempo al cargar
+
+    // Generar las opciones de tiempo al cargar la página
+    generateTimeOptions();
+});
+</script>
 </body>
 </html>

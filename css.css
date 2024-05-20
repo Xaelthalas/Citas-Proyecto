@@ -104,13 +104,12 @@ tr:hover {
 /* Estilos para el encabezado */
 .header {
     background-color: #4CAF50; /* verde */
-    padding: 10px;
-    text-align: right;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: auto;
-    z-index: 1000;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #388E3C; /* verde más oscuro */
 }
 
 .header span {
