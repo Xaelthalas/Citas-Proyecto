@@ -81,7 +81,7 @@
 
                     // Comprobamos las credenciales utilizando el método comprobarCredenciales
                     if ($citas->comprobarCredenciales($username, $password)) {
-                        // Credenciales correctas, redirigimos al usuario a hola.php
+                        // Credenciales correctas, redirigimos al usuario a menu
                         session_start();
                         $_SESSION["id_usuario"] = $username;
                         header("Location: menuusuario.php");
