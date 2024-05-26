@@ -28,10 +28,11 @@ if (isset($_GET['id'])) {
     $message_type = "";
 
     // Verificar si se ha enviado el formulario
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_POST["hora"])) {
-        // Obtener la fecha y hora enviadas desde el formulario
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_POST["hora"]) && isset($_POST["motivo"])) {
+        // Obtener la fecha, hora y motivo enviados desde el formulario
         $fecha = $_POST["fecha"];
         $hora = $_POST["hora"];
+        $motivo = $_POST["motivo"];
 
         // Verificar si la nueva fecha y hora no coinciden con ninguna cita existente
         if (!$citas->verificarDisponibilidadCita($fecha, $hora)) {
@@ -39,7 +40,7 @@ if (isset($_GET['id'])) {
             $message_type = "warning";
         } else {
             // Modificar la cita en la base de datos
-            if ($citas->modificarCita($cita_id, $fecha, $hora)) {
+            if ($citas->modificarCita($cita_id, $fecha, $hora, $motivo)) {
                 $message = "La cita se ha modificado correctamente.";
                 $message_type = "success";
             } else {
@@ -57,6 +58,7 @@ if (isset($_GET['id'])) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modificar Cita</title>
@@ -127,6 +129,15 @@ if (isset($_GET['id'])) {
                 <!-- Las opciones se agregarán mediante JavaScript -->
             </select>
         </div>
+        <div class="form-group">
+    <label for="motivo">Motivo de la cita:</label>
+    <select id="motivo" class="form-control" name="motivo">
+        <option value="Matrícula">Matrícula</option>
+        <option value="Becas">Becas</option>
+        <option value="Problemas personales">Problemas personales</option>
+        <option value="Otros">Otros</option>
+    </select>
+</div>
         <button type="submit" class="btn btn-primary">Modificar Cita</button>
         <button type="button" class="btn btn-secondary" onclick="window.location.href='menuusuario.php'">Volver</button>
     </form>
@@ -144,12 +155,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentMinutes = today.getMinutes();
 
     const datepicker = new Datepicker(datepickerElement, {
-        format: 'yyyy-mm-dd',
-        daysOfWeekDisabled: [0, 6], // 0 = Domingo, 6 = Sábado
-        minDate: today, // Establecer fecha mínima a hoy
-        maxDate: nextMonth, // Establecer fecha máxima a un mes desde hoy
-        language: 'es',
-    });
+    format: 'dd/mm/yyyy',
+    daysOfWeekDisabled: [0, 6], // 0 = Domingo, 6 = Sábado
+    minDate: today, // Establecer fecha mínima a hoy
+    maxDate: nextMonth, // Establecer fecha máxima a un mes desde hoy
+    language: 'es',
+});
+
 
     datepickerElement.setAttribute('min', today.toISOString().split('T')[0]);
     datepickerElement.setAttribute('max', nextMonth.toISOString().split('T')[0]);

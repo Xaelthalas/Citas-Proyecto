@@ -28,7 +28,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
     // Obtener la fecha y la hora del formulario
     $fecha = $_POST["fecha"];
     $hora = $_POST["hora"];
+    $motivo = ""; // Inicializar el motivo
     
+    // Verificar si se envió el motivo
+    if (isset($_POST["motivo"])) {
+        $motivo = $_POST["motivo"];
+    }
+    
+
     // Verificar que la fecha y la hora no estén vacías
     if (!empty($fecha) && !empty($hora)) {
         // Verificar la disponibilidad de la cita
@@ -36,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
             // Verificar si el usuario tiene una cita pendiente
             if (!$citas->tieneCitaPendiente($id_usuario)) {
                 // Reservar la cita
-                if ($citas->reservarCita($id_usuario, $fecha, $hora, 'Pendiente')) {
+                if ($citas->reservarCita($id_usuario, $fecha, $hora, 'Pendiente', $motivo)) {
                     $message = "La cita se ha registrado correctamente.";
                     $message_type = "success";
                 } else {
@@ -55,12 +62,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
         $message = "Por favor, seleccione una fecha y hora válidas.";
         $message_type = "warning";
     }
+    
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Cita</title>
@@ -131,6 +140,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
                 <!-- Las opciones se agregarán mediante JavaScript -->
             </select>
         </div>
+        <div class="form-group">
+    <label for="motivo">Motivo de la cita:</label>
+    <select id="motivo" class="form-control" name="motivo">
+        <option value="Matrícula">Matrícula</option>
+        <option value="Becas">Becas</option>
+        <option value="Problemas personales">Problemas personales</option>
+        <option value="Otros">Otros</option>
+    </select>
+</div>
+
         <button type="submit" class="btn btn-primary">Reservar Cita</button>
         <button type="button" class="btn btn-secondary" onclick="window.location.href='menuusuario.php'">Volver</button>
     </form>
@@ -148,65 +167,66 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentMinutes = today.getMinutes();
 
     const datepicker = new Datepicker(datepickerElement, {
-        format: 'yyyy-mm-dd',
-        daysOfWeekDisabled: [0, 6], // 0 = Domingo, 6 = Sábado
-        minDate: today, // Establecer fecha mínima a hoy
-        maxDate: nextMonth, // Establecer fecha máxima a un mes desde hoy
-        language: 'es',
+    format: 'yyyy-mm-dd', // Cambiado a 'yyyy-mm-dd'
+    daysOfWeekDisabled: [0, 6], // 0 = Domingo, 6 = Sábado
+    minDate: today, // Establecer fecha mínima a hoy
+    maxDate: nextMonth, // Establecer fecha máxima a un mes desde hoy
+    language: 'es',
+});
+
+
+datepickerElement.setAttribute('min', today.toISOString().split('T')[0]);
+datepickerElement.setAttribute('max', nextMonth.toISOString().split('T')[0]);
+
+// Deshabilitar la fecha de hoy si todas las horas han pasado
+if (currentHour >= 14) {
+    datepicker.setOptions({
+        datesDisabled: [today]
     });
+}
 
-    datepickerElement.setAttribute('min', today.toISOString().split('T')[0]);
-    datepickerElement.setAttribute('max', nextMonth.toISOString().split('T')[0]);
+// Función para generar las opciones de tiempo
+function generateTimeOptions() {
+    const timepicker = document.getElementById('timepicker');
+    const startHour = 11;
+    const endHour = 14;
+    const interval = 10; // minutos
 
-    // Deshabilitar la fecha de hoy si todas las horas han pasado
-    if (currentHour >= 14) {
-        datepicker.setOptions({
-            datesDisabled: [today]
-        });
-    }
+    // Limpiar las opciones anteriores
+    timepicker.innerHTML = '';
 
-    // Función para generar las opciones de tiempo
-    function generateTimeOptions() {
-        const timepicker = document.getElementById('timepicker');
-        const startHour = 11;
-        const endHour = 14;
-        const interval = 10; // minutos
-
-        // Limpiar las opciones anteriores
-        timepicker.innerHTML = '';
-
-        // Generar las opciones de tiempo
-        for (let hour = startHour; hour < endHour; hour++) {
-            for (let minutes = 0; minutes < 60; minutes += interval) {
-                // Solo agregar la opción si la hora actual no ha pasado
-                if (datepickerElement.value === today.toISOString().split('T')[0] && (hour < currentHour || (hour === currentHour && minutes <= currentMinutes))) {
-                    continue;
-                }
-
-                const timeOption = document.createElement('option');
-                const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
-                timeOption.value = `${hour}:${formattedMinutes}`;
-                timeOption.text = `${hour}:${formattedMinutes}`;
-                timepicker.appendChild(timeOption);
+    // Generar las opciones de tiempo
+    for (let hour = startHour; hour < endHour; hour++) {
+        for (let minutes = 0; minutes < 60; minutes += interval) {
+            // Solo agregar la opción si la hora actual no ha pasado
+            if (datepickerElement.value === today.toISOString().split('T')[0] && (hour < currentHour || (hour === currentHour && minutes <= currentMinutes))) {
+                continue;
             }
-        }
 
-        // Añadir la opción de las 14:00 si aún no ha pasado
-        if (datepickerElement.value !== today.toISOString().split('T')[0] || (currentHour < 14 || (currentHour === 14 && currentMinutes === 0))) {
-            const endOption = document.createElement('option');
-            endOption.value = `14:00`;
-            endOption.text = `14:00`;
-            timepicker.appendChild(endOption);
+            const timeOption = document.createElement('option');
+            const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+            timeOption.value = `${hour}:${formattedMinutes}`;
+            timeOption.text = `${hour}:${formattedMinutes}`;
+            timepicker.appendChild(timeOption);
         }
     }
 
-    // Generar las opciones de tiempo al cargar la página
-    generateTimeOptions();
+    // Añadir la opción de las 14:00 si aún no ha pasado
+    if (datepickerElement.value !== today.toISOString().split('T')[0] || (currentHour < 14 || (currentHour === 14 && currentMinutes === 0))) {
+        const endOption = document.createElement('option');
+        endOption.value = `14:00`;
+        endOption.text = `14:00`;
+        timepicker.appendChild(endOption);
+    }
+}
 
-    // Regenerar las opciones de tiempo cuando se cambia la fecha
-    datepickerElement.addEventListener('changeDate', function () {
-        generateTimeOptions();
-    });
+// Generar las opciones de tiempo al cargar la página
+generateTimeOptions();
+
+// Regenerar las opciones de tiempo cuando se cambia la fecha
+datepickerElement.addEventListener('changeDate', function () {
+    generateTimeOptions();
+});
 });
 </script>
 </body>
