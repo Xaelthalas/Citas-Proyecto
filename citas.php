@@ -250,6 +250,35 @@ public function obtenerHorasOcupadas($fecha) {
     return $horas_ocupadas;
 }
 
+public function mostrarUsuarios() {
+    $consulta = "SELECT * FROM Usuarios";
+    $resultado = $this->ejecuta_SQL($consulta);
+
+    if ($resultado->num_rows > 0) {
+        while ($fila = $resultado->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $fila['DNI'] . "</td>";
+            echo "<td>" . $fila['Nombre'] . " " . $fila['Apellidos'] . "</td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='2'>No hay usuarios registrados</td></tr>";
+    }
+}
+public function esAdmin($id_usuario) {
+    // Consulta SQL para verificar si el usuario es administrador
+    $consulta = "SELECT * FROM Usuarios WHERE DNI = '$id_usuario' AND EsAdmin = 1";
+    
+    // Ejecutamos la consulta
+    $resultado = $this->ejecuta_SQL($consulta);
+
+    // Verificamos si se obtuvieron resultados
+    if ($resultado && $resultado->num_rows > 0) {
+        return true; // El usuario es administrador
+    } else {
+        return false; // El usuario no es administrador
+    }
+}
 
 }
 

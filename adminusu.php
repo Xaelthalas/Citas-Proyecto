@@ -1,32 +1,29 @@
 <?php
-session_start();
+// Incluir la clase Citas
 require "citas.php";
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['id_usuario'])) {
-    header("Location: login.php"); // Redirigir al usuario al inicio de sesión si no ha iniciado sesión
+
+// Iniciar sesión
+session_start();
+
+// Verificar si el usuario ha iniciado sesión y es administrador
+if (!isset($_SESSION['id_usuario']) || $_SESSION['id_usuario'] !== "admin") {
+    header("Location: login.php"); // Redirigir al usuario al inicio de sesión si no ha iniciado sesión o no es administrador
     exit();
 }
 
+// Crear un objeto de la clase Citas
 $citas = new Citas();
-$citas->actualizarEstadoCitas();
-// Obtener el ID del usuario de la sesión
-$id_usuario = $_SESSION['id_usuario'];
-// Obtener el nombre del usuario
-$nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 
-// Aquí puedes incluir cualquier encabezado, barra de navegación, etc., que desees mostrar en todas las páginas
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú de Usuario</title>
-    <!-- Enlace al CSS de Bootstrap -->
+    <title>Panel de Administrador</title>
+    <link rel="stylesheet" href="css.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Enlace a la biblioteca de iconos de Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         /* Estilos para el encabezado */
         .header {
@@ -49,6 +46,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
+            margin-right: 20px;
             cursor: pointer;
         }
 
@@ -70,12 +68,21 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
             margin-bottom: 20px;
         }
 
+        /* Estilos para la tabla */
+        .table {
+            text-align: center;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            color: #555; /* Color de texto gris */
+        }
+
         /* Estilos para los botones */
-        .menu-button {
+        .btn {
             display: block;
             margin: 0 auto;
             width: 200px; /* Ajusta el ancho según sea necesario */
             text-align: center;
+            margin-top: 20px;
         }
 
         /* Estilos para el texto explicativo */
@@ -84,38 +91,44 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
             margin-top: 20px;
             color: #555; /* Color de texto gris */
         }
+        th {
+            background-color: #4CAF50; /* verde */
+            color: white;
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
         <!-- Nombre de usuario -->
-        <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
+        <span class="welcome-text">Bienvenido, Administrador</span>
         <!-- Botón para cerrar sesión -->
         <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
         </button>
     </div>
 
+    <h2>Panel de Administrador</h2>
+
     <div class="container">
-        <h2>¿Qué operación quieres realizar?</h2>
-        <div class="row justify-content-center mt-3">
-            <div class="col-md-5">
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a href="reservar_cita.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-calendar-plus"></i> Reservar una cita
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="mostrar_citas.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-list"></i> Ver mis citas
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Motivo</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    $citas->actualizarEstadoCitas();
+                    ?>
+                </tbody>
+            </table>
         </div>
-        <p class="explanation">Selecciona una opción para continuar.</p>
     </div>
 
     <!-- Enlace al JS de Bootstrap -->

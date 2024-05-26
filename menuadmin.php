@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "citas.php";
+
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php"); // Redirigir al usuario al inicio de sesión si no ha iniciado sesión
@@ -14,6 +15,8 @@ $id_usuario = $_SESSION['id_usuario'];
 // Obtener el nombre del usuario
 $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 
+// Verificar si el usuario es administrador (nombre de usuario "admin")
+
 // Aquí puedes incluir cualquier encabezado, barra de navegación, etc., que desees mostrar en todas las páginas
 ?>
 <!DOCTYPE html>
@@ -22,7 +25,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú de Usuario</title>
+    <title>Menú de Administrador</title>
     <!-- Enlace al CSS de Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
@@ -103,13 +106,13 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
             <div class="col-md-5">
                 <ul class="list-inline">
                     <li class="list-inline-item">
-                        <a href="reservar_cita.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-calendar-plus"></i> Reservar una cita
+                        <a href="ver_usuarios.php" class="btn btn-primary menu-button">
+                            <i class="bi bi-people"></i> Ver Usuarios
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="mostrar_citas.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-list"></i> Ver mis citas
+                        <a href="ver_citas.php" class="btn btn-primary menu-button">
+                            <i class="bi bi-calendar-check"></i> Ver Citas
                         </a>
                     </li>
                 </ul>
