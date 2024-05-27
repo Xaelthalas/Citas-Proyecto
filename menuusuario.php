@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "citas.php";
+
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php"); // Redirigir al usuario al inicio de sesión si no ha iniciado sesión
@@ -9,17 +10,20 @@ if (!isset($_SESSION['id_usuario'])) {
 
 $citas = new Citas();
 $citas->actualizarEstadoCitas();
+
 // Obtener el ID del usuario de la sesión
 $id_usuario = $_SESSION['id_usuario'];
+
 // Obtener el nombre del usuario
 $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 
 // Aquí puedes incluir cualquier encabezado, barra de navegación, etc., que desees mostrar en todas las páginas
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
+    <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú de Usuario</title>

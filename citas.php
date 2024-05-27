@@ -94,12 +94,33 @@ class Citas {
             echo "<tr><td colspan='6'>No hay citas disponibles.</td></tr>";
         }
     }
-    
+    // Método para obtener la dirección de correo electrónico del usuario por su ID
+public function obtenerCorreoUsuario($id_usuario) {
+    // Consulta SQL para obtener la dirección de correo electrónico del usuario por su ID
+    $consulta = "SELECT Email FROM Usuarios WHERE DNI = '$id_usuario'";
+    // Ejecutamos la consulta
+    $resultado = $this->ejecuta_SQL($consulta);
+
+    // Verificamos si se obtuvieron resultados
+    if ($resultado && $resultado->num_rows > 0) {
+        $fila = $resultado->fetch_assoc();
+        
+        return $fila['Email'];
+    } else {
+        return ""; // Devuelve una cadena vacía si no se encuentra el correo electrónico del usuario
+    }
+}
+
 
     // Método para dar de alta a un nuevo usuario
-    public function altaUsuario($dni, $nombre, $apellidos, $contrasena) {
+    public function altaUsuario($dni, $nombre, $apellidos, $email, $contrasena, $rol) {
+        // Validar el formato del email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return false; // El email no tiene un formato válido
+        }
+
         // Construimos la consulta SQL para insertar un nuevo usuario
-        $sql = "INSERT INTO Usuarios (DNI, Nombre, Apellidos, Contraseña) VALUES ('$dni', '$nombre', '$apellidos', '$contrasena')";
+        $sql = "INSERT INTO Usuarios (DNI, Nombre, Apellidos, Email, Contraseña, Rol) VALUES ('$dni', '$nombre', '$apellidos', '$email', '$contrasena', '$rol')";
         // Ejecutamos la consulta
         return $this->ejecuta_SQL($sql);
     }
@@ -141,21 +162,25 @@ class Citas {
     }
 
     // Método para obtener el nombre del usuario por su ID
-    public function obtenerNombreUsuario($id_usuario) {
-        // Consulta SQL para obtener el nombre del usuario por su ID
-        $consulta = "SELECT Nombre FROM Usuarios WHERE DNI = $id_usuario";
-        // Ejecutamos la consulta
-        $resultado = $this->ejecuta_SQL($consulta);
+  // Método para obtener el nombre del usuario por su ID
+public function obtenerNombreUsuario($id_usuario) {
+    // Consulta SQL para obtener el nombre del usuario por su ID
+    $consulta = "SELECT Nombre FROM Usuarios WHERE DNI = '$id_usuario'";
+    // Ejecutamos la consulta
+    $resultado = $this->ejecuta_SQL($consulta);
 
-        // Verificamos si se obtuvieron resultados
-        if ($resultado && $resultado->num_rows > 0) {
-            $fila = $resultado->fetch_assoc();
-            
-            return $fila['Nombre'];
-        } else {
-            return ""; // Devuelve una cadena vacía si no se encuentra el usuario
-        }
+    // Verificamos si se obtuvieron resultados
+    if ($resultado && $resultado->num_rows > 0) {
+        $fila = $resultado->fetch_assoc();
+        
+        return $fila['Nombre'];
+    } else {
+        // Manejar el error
+        echo "Error al obtener el nombre del usuario: " . $this->conexion->error;
+        return ""; // Devuelve una cadena vacía si no se encuentra el usuario
     }
+}
+
 
     // Método para verificar y actualizar el estado de las citas pendientes
     public function actualizarEstadoCitas() {
@@ -267,8 +292,7 @@ public function mostrarUsuarios() {
 }
 public function esAdmin($id_usuario) {
     // Consulta SQL para verificar si el usuario es administrador
-    $consulta = "SELECT * FROM Usuarios WHERE DNI = '$id_usuario' AND EsAdmin = 1";
-    
+    $consulta = "SELECT Rol FROM Usuarios WHERE DNI = '$id_usuario' AND Rol = 'admin'";
     // Ejecutamos la consulta
     $resultado = $this->ejecuta_SQL($consulta);
 
@@ -279,6 +303,25 @@ public function esAdmin($id_usuario) {
         return false; // El usuario no es administrador
     }
 }
+
+// Método para obtener el rol de un usuario por su ID
+public function obtenerRolUsuario($id_usuario) {
+    // Consulta SQL para obtener el rol del usuario por su ID
+    $consulta = "SELECT Rol FROM Usuarios WHERE DNI = '$id_usuario'";
+    // Ejecutamos la consulta
+    $resultado = $this->ejecuta_SQL($consulta);
+
+    // Verificamos si se obtuvieron resultados
+    if ($resultado && $resultado->num_rows > 0) {
+        $fila = $resultado->fetch_assoc();
+        
+        return $fila['Rol'];
+    } else {
+        return ""; // Devuelve una cadena vacía si no se encuentra el usuario
+    }
+}
+
+
 
 }
 

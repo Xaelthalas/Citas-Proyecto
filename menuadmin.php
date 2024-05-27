@@ -7,8 +7,17 @@ if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php"); // Redirigir al usuario al inicio de sesión si no ha iniciado sesión
     exit();
 }
+// Verificar si el usuario es administrador
+
 
 $citas = new Citas();
+if ($citas->esAdmin($id_usuario)) {
+    header("Location: menuadmin.php");
+    exit();
+} else {
+    header("Location: menuusuario.php");
+    exit();
+}
 $citas->actualizarEstadoCitas();
 // Obtener el ID del usuario de la sesión
 $id_usuario = $_SESSION['id_usuario'];

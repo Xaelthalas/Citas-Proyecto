@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
             if (!$citas->tieneCitaPendiente($id_usuario)) {
                 // Reservar la cita
                 if ($citas->reservarCita($id_usuario, $fecha, $hora, 'Pendiente', $motivo)) {
-                    $message = "La cita se ha registrado correctamente.";
+                    header("Location: email.php?usuario=$nombre_usuario&fecha=$fecha&hora=$hora&motivo=$motivo");
                     $message_type = "success";
                 } else {
                     $message = "Error al registrar la cita. Por favor, inténtelo nuevamente.";

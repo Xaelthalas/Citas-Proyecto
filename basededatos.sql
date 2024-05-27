@@ -7,14 +7,17 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     DNI VARCHAR(8) PRIMARY KEY,
     Nombre VARCHAR(50),
     Apellidos VARCHAR(50),
-    Contraseña VARCHAR(255) -- Aquí almacenaremos la contraseña
+    Email VARCHAR(100), -- Añadimos el campo Email
+    Contraseña VARCHAR(255),
+    Rol VARCHAR(20) NOT NULL DEFAULT 'usuario', -- Añadimos el campo Rol con valor por defecto 'usuario'
+    UNIQUE KEY (Email) -- Añadimos una restricción UNIQUE para el campo Email
 );
 
 -- Verificamos si ya existe un usuario admin
 SET @admin_count = (SELECT COUNT(*) FROM Usuarios WHERE DNI = 'admin');
 
 -- Si no existe, insertamos el usuario admin
-INSERT IGNORE INTO Usuarios (DNI, Nombre, Apellidos, Contraseña) VALUES ('admin', 'Administrador', 'Principal', 'admin');
+INSERT IGNORE INTO Usuarios (DNI, Nombre, Apellidos, Email, Contraseña, Rol) VALUES ('admin', 'Administrador', 'Principal', 'admin@example.com', 'admin', 'admin');
 
 -- Creamos la tabla Citas
 CREATE TABLE IF NOT EXISTS Citas (
@@ -23,6 +26,6 @@ CREATE TABLE IF NOT EXISTS Citas (
     Fecha DATE,
     Hora TIME,
     Estado VARCHAR(20),
-    Motivo VARCHAR(255), -- Añadimos el campo Motivo
+    Motivo VARCHAR(255),
     FOREIGN KEY (DNI_usuario) REFERENCES Usuarios(DNI)
 );

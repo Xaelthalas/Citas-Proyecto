@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
@@ -60,9 +61,15 @@
                     <input type="text" class="form-control" id="apellidos" name="apellidos" required>
                 </div>
                 <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
                     <label for="contrasena">Contraseña:</label>
                     <input type="password" class="form-control" id="contrasena" name="contrasena" required>
                 </div>
+                <!-- Agregar campo oculto para el rol con valor predeterminado "usuario" -->
+                <input type="hidden" name="rol" value="usuario">
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-person-plus"></i> Registrarse
                 </button>
@@ -78,10 +85,13 @@
                 $dni = $_POST["dni"];
                 $nombre = $_POST["nombre"];
                 $apellidos = $_POST["apellidos"];
+                $email = $_POST["email"];
                 $contrasena = $_POST["contrasena"];
+                // Obtener el rol del campo oculto
+                $rol = $_POST["rol"];
 
                 // Dar de alta al usuario
-                if ($citas->altaUsuario($dni, $nombre, $apellidos, $contrasena)) {
+                if ($citas->altaUsuario($dni, $nombre, $apellidos, $email, $contrasena, $rol)) {
                     echo "<div class='success'>Usuario registrado exitosamente.</div>";
                     header("Location: login.php");
                 } else {

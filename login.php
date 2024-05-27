@@ -1,5 +1,7 @@
 <?php
+session_start();
 require "citas.php";
+
 // Si se ha enviado el formulario de inicio de sesión
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificamos si se recibieron datos de nombre de usuario y contraseña
@@ -8,29 +10,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        // Verificar si las credenciales coinciden con el usuario admin
-        if ($username == "admin" && $password == "admin") {
-            // Redirigir al usuario admin a menuadmin.php
-            header("Location: menuadmin.php");
-            exit(); // Importante: detener la ejecución del script después de redirigir
-        } else {
-            // Si no coincide con el usuario admin, continuar con la verificación normal
-            // Incluimos el archivo citas.php para poder utilizar la clase Citas
- 
+        // Creamos una instancia de la clase Citas
+        $citas = new Citas();
 
-            // Resto del código para verificar las credenciales de usuarios normales...
+        // Verificar si las credenciales son correctas
+        if ($citas->comprobarCredenciales($username, $password)) {
+            // Credenciales correctas, obtener el rol del usuario
+            $rol = $citas->obtenerRolUsuario($username);
+            
+            // Establecer la sesión
+            $_SESSION['id_usuario'] = $username;
+
+            // Redirigir al menú correspondiente según el rol del usuario
+            if ($rol === 'admin') {
+                header("Location: menuadmin.php");
+            } else {
+                header("Location: menuusuario.php");
+            }
+            exit(); // Detener la ejecución del script después de redirigir
+        } else {
+            // Credenciales incorrectas, mostrar un mensaje de error
+            echo "<div class='error'>Nombre de usuario o contraseña incorrectos</div>";
         }
     } else {
         // Datos de inicio de sesión incompletos
-        echo "Por favor, ingresa nombre de usuario y contraseña";
+        echo "<div class='error'>Por favor, ingresa nombre de usuario y contraseña</div>";
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
-
+    <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
@@ -99,9 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </button>
             </form>
             <a href="registrar_usuario.php">Registrarse</a>
-     
-
-
         </div>
     </div>
 </body>
