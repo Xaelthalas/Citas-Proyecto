@@ -303,6 +303,23 @@ public function esAdmin($id_usuario) {
         return false; // El usuario no es administrador
     }
 }
+// Método para obtener todas las fechas y horas ocupadas
+public function obtenerFechasHorasOcupadas() {
+    // Consulta SQL para obtener todas las citas reservadas
+    $consulta = "SELECT Fecha, Hora FROM Citas";
+    // Ejecutamos la consulta
+    $resultado = $this->ejecuta_SQL($consulta);
+
+    $citas = [];
+    // Recorremos el resultado y lo añadimos al array de citas
+    if ($resultado->num_rows > 0) {
+        while ($fila = $resultado->fetch_assoc()) {
+            $citas[] = $fila;
+        }
+    }
+
+    return $citas;
+}
 
 // Método para obtener el rol de un usuario por su ID
 public function obtenerRolUsuario($id_usuario) {
