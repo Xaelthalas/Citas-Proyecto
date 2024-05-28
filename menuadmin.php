@@ -7,34 +7,34 @@ if (!isset($_SESSION['id_usuario'])) {
     header("Location: login.php"); // Redirigir al usuario al inicio de sesión si no ha iniciado sesión
     exit();
 }
-// Verificar si el usuario es administrador
 
-
-$citas = new Citas();
-if ($citas->esAdmin($id_usuario)) {
-    header("Location: menuadmin.php");
-    exit();
-} else {
-    header("Location: menuusuario.php");
-    exit();
-}
-$citas->actualizarEstadoCitas();
 // Obtener el ID del usuario de la sesión
 $id_usuario = $_SESSION['id_usuario'];
+
+// Crear una instancia de la clase Citas
+$citas = new Citas();
+
+// Verificar si el usuario es administrador
+if (!$citas->esAdmin($id_usuario)) {
+    header("Location: login.php");
+    exit();
+} 
+
 // Obtener el nombre del usuario
 $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 
-// Verificar si el usuario es administrador (nombre de usuario "admin")
+// Actualizar el estado de las citas
+$citas->actualizarEstadoCitas();
 
 // Aquí puedes incluir cualquier encabezado, barra de navegación, etc., que desees mostrar en todas las páginas
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
+    <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú de Administrador</title>
+    <title>Menú de Usuario</title>
     <!-- Enlace al CSS de Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
@@ -51,23 +51,9 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
             border-bottom: 2px solid #388E3C; /* verde más oscuro */
         }
 
-        /* Estilos para el botón de cerrar sesión */
-        .logout-button {
-            background-color: #f44336; /* rojo */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
         /* Estilos para el texto de bienvenida */
         .welcome-text {
             font-size: 18px;
-            margin-right: auto; /* Esto empuja el texto hacia la derecha */
             margin-left: 20px; /* Margen izquierdo para separar del borde */
         }
 
@@ -104,7 +90,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
         <!-- Nombre de usuario -->
         <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
         <!-- Botón para cerrar sesión -->
-        <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
+        <button class="btn btn-danger" onclick="window.location.href='cerrar_sesion.php'">
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
         </button>
     </div>
@@ -112,15 +98,15 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <div class="container">
         <h2>¿Qué operación quieres realizar?</h2>
         <div class="row justify-content-center mt-3">
-            <div class="col-md-5">
-                <ul class="list-inline">
+            <div class="col-md-6 col-sm-12"> <!-- Se muestra en una sola columna en dispositivos pequeños -->
+                <ul class="list-inline text-center">
                     <li class="list-inline-item">
-                        <a href="ver_usuarios.php" class="btn btn-primary menu-button">
+                        <a href="adminusu.php" class="btn btn-primary menu-button">
                             <i class="bi bi-people"></i> Ver Usuarios
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a href="ver_citas.php" class="btn btn-primary menu-button">
+                        <a href="admincitas.php" class="btn btn-primary menu-button">
                             <i class="bi bi-calendar-check"></i> Ver Citas
                         </a>
                     </li>

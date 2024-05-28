@@ -25,10 +25,15 @@ if (isset($_GET['id'])) {
     // Ejecutar la función para eliminar la cita
     $citas->eliminarCita($id_cita);
     $citas->actualizarEstadoCitas();
-
+    if ($citas->esAdmin($id_usuario)) {
+        header("Location: admincitas.php");
+        exit();
+    } else{
+        header("Location: mostrar_citas.php");
+        exit();
+    }
     // Redirigir de nuevo a la página que muestra las citas
-    header("Location: mostrar_citas.php");
-    exit();
+
 } else {
     echo "No se ha proporcionado un ID de cita válido.";
 }

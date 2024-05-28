@@ -117,7 +117,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <div class="container">
         <div class="table-responsive">
             <table class="table table-bordered">
-                <thead class="thead-light">
+                <thead class="thead-green">
                     <tr>
                         
                         <th>Fecha</th>

@@ -21,10 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Establecer la sesión
             $_SESSION['id_usuario'] = $username;
 
-            // Redirigir al menú correspondiente según el rol del usuario
-            if ($rol === 'admin') {
+            // Verificar si el usuario es administrador
+            if ($citas->esAdmin($username)) {
+                // Redirigir al usuario a la parte de administrador
                 header("Location: menuadmin.php");
             } else {
+                // Redirigir al usuario a la parte de usuario normal
                 header("Location: menuusuario.php");
             }
             exit(); // Detener la ejecución del script después de redirigir
@@ -67,7 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         /* Estilos para el botón de inicio de sesión */
         button[type="submit"] {
-            width: 100%;
             padding: 10px;
             background-color: #4CAF50; /* verde */
             border: none;
@@ -90,15 +91,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-top: 10px;
             text-align: center;
         }
-        h2{
+
+        /* Estilos para el título */
+        h2 {
             color: #4CAF50;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="login-container">
-            <h2 class="text-center">Iniciar Sesión</h2>
+            <h2>Iniciar Sesión</h2>
             <form action="login.php" method="POST">
                 <div class="form-group">
                     <input type="text" class="form-control" name="username" placeholder="Dni" required>
@@ -106,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
                 </div>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary btn-block">
                     <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
                 </button>
             </form>

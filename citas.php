@@ -57,7 +57,46 @@ class Citas {
 
         return $resultado;
     }
-
+    public function mostrarTodasLasCitas() {
+        // Consulta SQL para obtener todas las citas
+        $consulta = "SELECT ID, Fecha, Hora, Estado, Motivo, DNI_usuario FROM Citas";
+        
+        // Ejecutamos la consulta
+        $resultado = $this->ejecuta_SQL($consulta);
+    
+        // Verificamos si se obtuvieron resultados
+        if ($resultado && $resultado->num_rows > 0) {
+            while ($fila = $resultado->fetch_assoc()) {
+                echo "<tr>";
+                
+                // Formatear la fecha en el formato "día mes año"
+                $fecha_formateada = date("d/m/Y", strtotime($fila['Fecha']));
+                
+                echo "<td>" . $fecha_formateada . "</td>";
+                echo "<td>" . $fila['Hora'] . "</td>";
+                echo "<td>" . $fila['Motivo'] . "</td>";
+                echo "<td>" . $fila['Estado'] . "</td>";
+    
+                // Obtener el nombre del usuario si hay un DNI asociado
+                $dni_usuario = $fila['DNI_usuario'];
+                if (!empty($dni_usuario)) {
+                    $nombre_usuario = $this->obtenerNombreUsuario($dni_usuario);
+                    echo "<td>" . $nombre_usuario . "</td>";
+                } else {
+                    echo "<td>-</td>"; // Mostrar un guion si no hay DNI asociado
+                }
+                
+                // Mostrar los enlaces "Eliminar" y "Modificar"
+                echo "<td><a href='eliminar_cita.php?id=" . $fila['ID'] . "'>Eliminar</a> &nbsp; <a href='modificar_cita.php?id=" . $fila['ID'] . "'>Modificar</a></td>";
+                    
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='6'>No hay citas disponibles.</td></tr>";
+        }
+    }
+    
+    
     // Método para mostrar las citas del usuario
     public function mostrarCitas($id_usuario) {
         // Consulta SQL para obtener las citas del usuario
@@ -67,7 +106,7 @@ class Citas {
         $resultado = $this->ejecuta_SQL($consulta);
     
         // Verificamos si se obtuvieron resultados
-        if ($resultado->num_rows > 0) {
+        if ($resultado && $resultado->num_rows > 0) {
             while ($fila = $resultado->fetch_assoc()) {
                 echo "<tr>";
                 
@@ -91,9 +130,10 @@ class Citas {
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='6'>No hay citas disponibles.</td></tr>";
+            echo "<tr><td colspan='5'>No hay citas disponibles.</td></tr>";
         }
     }
+    
     // Método para obtener la dirección de correo electrónico del usuario por su ID
 public function obtenerCorreoUsuario($id_usuario) {
     // Consulta SQL para obtener la dirección de correo electrónico del usuario por su ID
@@ -275,26 +315,77 @@ public function obtenerHorasOcupadas($fecha) {
     return $horas_ocupadas;
 }
 
+public function eliminarUsuario($dni_usuario) {
+    // Consulta SQL para obtener todas las citas asociadas al usuario
+    $consulta_citas = "SELECT ID FROM Citas WHERE DNI_usuario = '$dni_usuario'";
+    
+    // Ejecutar la consulta para obtener las citas
+    $resultado_citas = $this->ejecuta_SQL($consulta_citas);
+
+    // Verificar si se obtuvieron citas asociadas al usuario
+    if ($resultado_citas && $resultado_citas->num_rows > 0) {
+        // Iterar sobre cada cita y eliminarla
+        while ($fila_cita = $resultado_citas->fetch_assoc()) {
+            $id_cita = $fila_cita['ID'];
+            // Consulta SQL para eliminar la cita actual
+            $consulta_eliminar_cita = "DELETE FROM Citas WHERE ID = '$id_cita'";
+            // Ejecutar la consulta para eliminar la cita actual
+            $resultado_eliminar_cita = $this->ejecuta_SQL($consulta_eliminar_cita);
+            // Verificar si se eliminó la cita actual correctamente
+            if (!$resultado_eliminar_cita) {
+                echo "Error al eliminar la cita con ID: $id_cita";
+                return; // Terminar la función si hay un error al eliminar una cita
+            }
+        }
+    }
+    
+    // Después de eliminar todas las citas, eliminar al usuario
+    // Consulta SQL para eliminar el usuario
+    $consulta_eliminar_usuario = "DELETE FROM Usuarios WHERE DNI = '$dni_usuario'";
+    
+    // Ejecutar la consulta para eliminar el usuario
+    $resultado_eliminar_usuario = $this->ejecuta_SQL($consulta_eliminar_usuario);
+    
+    // Verificar si se realizó la eliminación correctamente
+    if ($resultado_eliminar_usuario) {
+        echo "Usuario eliminado correctamente.";
+    } else {
+        echo "Error al eliminar el usuario.";
+    }
+}
+
+
+
+
+// Método para mostrar los usuarios (excluyendo al administrador)
 public function mostrarUsuarios() {
-    $consulta = "SELECT * FROM Usuarios";
+    // Consulta SQL para obtener todos los usuarios excepto el administrador
+    $consulta = "SELECT * FROM Usuarios WHERE Rol != 'admin'";
+    
+    // Ejecutamos la consulta
     $resultado = $this->ejecuta_SQL($consulta);
 
-    if ($resultado->num_rows > 0) {
+    // Verificamos si hay usuarios para mostrar
+    if ($resultado && $resultado->num_rows > 0) {
         while ($fila = $resultado->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $fila['DNI'] . "</td>";
             echo "<td>" . $fila['Nombre'] . " " . $fila['Apellidos'] . "</td>";
+            echo "<td>" . $fila['Email'] . "</td>"; // Agregamos el campo Email
+            echo "<td><a href='eliminar_usuario.php?dni=" . $fila['DNI'] . "'>Eliminar</a></td>"; // Corregimos el parámetro a 'dni'
             echo "</tr>";
         }
     } else {
-        echo "<tr><td colspan='2'>No hay usuarios registrados</td></tr>";
+        echo "<tr><td colspan='4'>No hay usuarios registrados</td></tr>"; // Ajustamos colspan a 4 para incluir el campo Email y el enlace de eliminar
     }
 }
+
 public function esAdmin($id_usuario) {
     // Consulta SQL para verificar si el usuario es administrador
     $consulta = "SELECT Rol FROM Usuarios WHERE DNI = '$id_usuario' AND Rol = 'admin'";
+    
     // Ejecutamos la consulta
-    $resultado = $this->ejecuta_SQL($consulta);
+    $resultado = $this->conexion->query($consulta);
 
     // Verificamos si se obtuvieron resultados
     if ($resultado && $resultado->num_rows > 0) {
@@ -303,6 +394,8 @@ public function esAdmin($id_usuario) {
         return false; // El usuario no es administrador
     }
 }
+
+
 // Método para obtener todas las fechas y horas ocupadas
 public function obtenerFechasHorasOcupadas() {
     // Consulta SQL para obtener todas las citas reservadas

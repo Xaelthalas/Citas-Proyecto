@@ -102,25 +102,27 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     </div>
 
     <div class="container">
-        <h2>¿Qué operación quieres realizar?</h2>
-        <div class="row justify-content-center mt-3">
-            <div class="col-md-5">
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a href="reservar_cita.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-calendar-plus"></i> Reservar una cita
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="mostrar_citas.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-list"></i> Ver mis citas
-                        </a>
-                    </li>
-                </ul>
-            </div>
+    <h2>¿Qué operación quieres realizar?</h2>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6 col-sm-12"> <!-- Se muestra en una sola columna en dispositivos pequeños -->
+            <ul class="list-inline text-center">
+                <li class="list-inline-item mb-2 mr-md-2"> <!-- Añadido: margen derecho y abajo, y ajuste para dispositivos medianos -->
+                    <a href="reservar_cita.php" class="btn btn-primary menu-button">
+                        <i class="bi bi-calendar-plus"></i> Reservar una cita
+                    </a>
+                </li>
+                <li class="list-inline-item mb-2">
+                    <a href="mostrar_citas.php" class="btn btn-primary menu-button">
+                        <i class="bi bi-list"></i> Ver mis citas
+                    </a>
+                </li>
+            </ul>
         </div>
-        <p class="explanation">Selecciona una opción para continuar.</p>
     </div>
+    <p class="explanation">Selecciona una opción para continuar.</p>
+</div>
+
+
 
     <!-- Enlace al JS de Bootstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
