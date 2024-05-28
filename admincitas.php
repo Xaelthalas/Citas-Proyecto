@@ -6,10 +6,7 @@ require "citas.php";
 session_start();
 
 // Verificar si el usuario ha iniciado sesión
-if (!$citas->esAdmin($id_usuario)) {
-    header("Location: login.php");
-    exit();
-}
+
 
 // Obtener el ID del usuario de la sesión
 $id_usuario = $_SESSION['id_usuario'];
@@ -17,7 +14,10 @@ $id_usuario = $_SESSION['id_usuario'];
 // Crear un objeto de la clase Citas
 $citas = new Citas();
 $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
-
+if (!$citas->esAdmin($id_usuario)) {
+    header("Location: login.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>

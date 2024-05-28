@@ -87,7 +87,7 @@ class Citas {
                 }
                 
                 // Mostrar los enlaces "Eliminar" y "Modificar"
-                echo "<td><a href='eliminar_cita.php?id=" . $fila['ID'] . "'>Eliminar</a> &nbsp; <a href='modificar_cita.php?id=" . $fila['ID'] . "'>Modificar</a></td>";
+                echo "<td><a href='eliminar_cita.php?id=" . $fila['ID'] . "'>Eliminar</a>  </td>";
                     
                 echo "</tr>";
             }
