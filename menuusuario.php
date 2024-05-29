@@ -77,8 +77,10 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
         /* Estilos para los botones */
         .menu-button {
             display: block;
-            margin: 0 auto;
-            width: 200px; /* Ajusta el ancho según sea necesario */
+            margin: 20px auto; /* Añadir márgenes superior e inferior */
+            width: 250px; /* Ajusta el ancho según sea necesario */
+            height: 50px; /* Ajusta la altura según sea necesario */
+            font-size: 18px; /* Tamaño de fuente más grande */
             text-align: center;
         }
 
@@ -87,6 +89,26 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
             text-align: center;
             margin-top: 20px;
             color: #555; /* Color de texto gris */
+        }
+
+        /* Estilos para la disposición horizontal de los botones */
+        .button-container {
+            display: flex;
+            justify-content: center; /* Centrar los botones horizontalmente */
+            align-items: flex-start; /* Alinear elementos al principio */
+            flex-wrap: wrap; /* Permitir que los elementos se envuelvan en líneas si es necesario */
+        }
+
+        .button-item {
+            margin: 20px; /* Margen alrededor de cada botón */
+            text-align: center;
+            flex: 1; /* Permitir que los elementos crezcan en la misma proporción */
+            min-width: 250px; /* Ancho mínimo para que los botones no se hagan demasiado pequeños */
+            max-width: 300px; /* Ancho máximo para mantener los botones alineados */
+        }
+
+        .button-item p {
+            margin-top: 10px; /* Margen superior para el texto explicativo */
         }
     </style>
 </head>
@@ -103,28 +125,27 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 
     <div class="container">
         <h2>¿Qué operación quieres realizar?</h2>
-        <div class="row justify-content-center mt-3">
-            <div class="col-md-6 col-sm-12"> <!-- Se muestra en una sola columna en dispositivos pequeños -->
-                <ul class="list-inline text-center">
-                    <li class="list-inline-item mb-2 mr-md-2"> <!-- Añadido: margen derecho y abajo, y ajuste para dispositivos medianos -->
-                        <a href="reservar_cita.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-calendar-plus"></i> Reservar una cita
-                        </a>
-                    </li>
-                    <li class="list-inline-item mb-2">
-                        <a href="mostrar_citas.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-list"></i> Ver mis citas
-                        </a>
-                    </li>
-                    <li class="list-inline-item mb-2">
-                        <a href="contacto.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-envelope"></i> Contactar
-                        </a>
-                    </li>
-                </ul>
+        <div class="button-container mt-3">
+            <div class="button-item">
+                <a href="reservar_cita.php" class="btn btn-primary menu-button">
+                    <i class="bi bi-calendar-plus"></i> Reservar una cita
+                </a>
+                <p class="explanation">Seleccione esta opción para registrar una nueva cita. Podrá elegir la fecha y la hora disponibles.</p>
+            </div>
+            <div class="button-item">
+                <a href="mostrar_citas.php" class="btn btn-primary menu-button">
+                    <i class="bi bi-list"></i> Ver mis citas
+                </a>
+                <p class="explanation">Verifique todas sus citas registradas. Aquí podrá ver los detalles de sus citas actuales y pasadas.</p>
+            </div>
+            <div class="button-item">
+                <a href="contacto.php" class="btn btn-primary menu-button">
+                    <i class="bi bi-envelope"></i> Contactar
+                </a>
+                <p class="explanation">Póngase en contacto con la administración para resolver cualquier duda o inconveniente.</p>
             </div>
         </div>
-        <p class="explanation">Selecciona una opción para continuar.</p>
+        <p class="explanation">Seleccione una opción para continuar. Si tiene alguna duda, no dude en contactar con nosotros.</p>
     </div>
 
     <!-- Enlace al JS de Bootstrap -->

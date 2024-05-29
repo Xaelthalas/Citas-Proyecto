@@ -87,6 +87,8 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
             width: 200px; /* Ajusta el ancho según sea necesario */
             text-align: center;
             margin-top: 20px;
+            height: 60px; /* Altura del botón */
+            font-size: 20px; /* Tamaño de la fuente */
         }
 
         /* Estilos para el texto explicativo */
@@ -113,13 +115,13 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     </div>
 
     <h2>Mis Citas</h2>
+    <p class="explanation">Aquí puedes ver todas tus citas reservadas. Puedes cancelar o editar una cita si es necesario.</p>
 
     <div class="container">
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead class="thead-green">
                     <tr>
-                        
                         <th>Fecha</th>
                         <th>Hora</th>
                         <th>Motivo</th>
@@ -139,8 +141,9 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 
     <div class="container">
         <div class="row justify-content-center mt-3">
-            <div class="col-md-2">
+            <div class="col-md-4">
                 <button type="button" class="btn btn-primary" onclick="window.location.href='menuusuario.php'">Volver</button>
+                <p class="explanation">Haz clic en "Volver" para regresar al menú principal.</p>
             </div>
         </div>
     </div>

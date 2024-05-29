@@ -79,6 +79,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .form-container {
             margin-top: 50px;
         }
+
+        /* Estilos para el título */
+        .custom-heading {
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: #333; /* Color de texto negro */
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-transform: uppercase; /* Convertir texto a mayúsculas */
+            letter-spacing: 1px; /* Espaciado entre letras */
+        }
     </style>
 </head>
 <body>
@@ -93,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="container form-container">
-        <h2>Contacto</h2>
+        <h2 class="custom-heading">¡Contáctanos!</h2>
         <?php if (isset($mensaje)): ?>
             <div class="alert alert-info" role="alert">
                 <?php echo $mensaje; ?>
@@ -105,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" class="form-control" id="asunto" name="asunto" required>
             </div>
             <div class="form-group">
-                <label for="cuerpo">Cuerpo:</label>
+                <label for="cuerpo">Motivo:</label>
                 <textarea class="form-control" id="cuerpo" name="cuerpo" rows="5" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
