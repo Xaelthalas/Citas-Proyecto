@@ -29,3 +29,12 @@ CREATE TABLE IF NOT EXISTS Citas (
     Motivo VARCHAR(255),
     FOREIGN KEY (DNI_usuario) REFERENCES Usuarios(DNI)
 );
+
+-- Creamos la tabla Comentarios
+CREATE TABLE IF NOT EXISTS Comentarios (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Asunto VARCHAR(255),
+    Cuerpo TEXT,
+    DNI_usuario VARCHAR(8),
+    FOREIGN KEY (DNI_usuario) REFERENCES Usuarios(DNI)
+);

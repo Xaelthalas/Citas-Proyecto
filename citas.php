@@ -95,8 +95,55 @@ class Citas {
             echo "<tr><td colspan='6'>No hay citas disponibles.</td></tr>";
         }
     }
+    public function insertarComentario($dni_usuario, $asunto, $cuerpo) {
+        $stmt = $this->conexion->prepare("INSERT INTO Comentarios (DNI_usuario, Asunto, Cuerpo) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $dni_usuario, $asunto, $cuerpo);
+        return $stmt->execute();
+    }
     
+    // Método para mostrar todos los comentarios
+// Método para mostrar todos los comentarios
+public function mostrarTodosLosComentarios() {
+    // Consulta SQL para obtener todos los comentarios
+    $consulta = "SELECT * FROM Comentarios";
     
+    // Ejecutamos la consulta
+    $resultado = $this->ejecuta_SQL($consulta);
+
+    // Verificamos si se obtuvieron resultados
+    if ($resultado && $resultado->num_rows > 0) {
+        while ($fila = $resultado->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $fila['DNI_usuario'] . "</td>";
+            // Asunto como un enlace que lleva a la página mostrar_comentario.php
+            echo "<td><a href='mostrar_comentario.php?id=" . $fila['ID'] . "'>" . $fila['Asunto'] . "</a></td>";
+    
+            echo "<td><a href='eliminar_comentario.php?id=" . $fila['ID'] . "'>Eliminar</a></td>";
+            echo "</tr>";
+        }
+    } else {
+        echo "<tr><td colspan='4'>No hay comentarios disponibles.</td></tr>";
+    }
+}
+// Método para obtener un comentario por su ID
+public function obtenerComentarioPorID($comentario_id) {
+    // Consulta SQL para obtener el comentario por su ID
+    $consulta = "SELECT * FROM Comentarios WHERE ID = '$comentario_id'";
+    
+    // Ejecutamos la consulta
+    $resultado = $this->ejecuta_SQL($consulta);
+
+    // Verificamos si se obtuvieron resultados
+    if ($resultado && $resultado->num_rows > 0) {
+        // Devolvemos el comentario como un array asociativo
+        return $resultado->fetch_assoc();
+    } else {
+        // Si no se encuentra el comentario, devolvemos NULL
+        return NULL;
+    }
+}
+
+
     // Método para mostrar las citas del usuario
     public function mostrarCitas($id_usuario) {
         // Consulta SQL para obtener las citas del usuario
@@ -133,6 +180,25 @@ class Citas {
             echo "<tr><td colspan='5'>No hay citas disponibles.</td></tr>";
         }
     }
+    public function obtenerCorreoUsuarioPorComentario($comentario_id) {
+        // Consulta SQL para obtener la dirección de correo electrónico del usuario asociado al comentario
+        $consulta = "SELECT Usuarios.Email 
+                     FROM Comentarios 
+                     JOIN Usuarios ON Comentarios.DNI_usuario = Usuarios.DNI 
+                     WHERE Comentarios.ID = '$comentario_id'";
+                     
+        // Ejecutamos la consulta
+        $resultado = $this->ejecuta_SQL($consulta);
+    
+        // Verificamos si se obtuvieron resultados
+        if ($resultado && $resultado->num_rows > 0) {
+            $fila = $resultado->fetch_assoc();
+            return $fila['Email'];
+        } else {
+            return ""; // Devuelve una cadena vacía si no se encuentra el correo electrónico del usuario
+        }
+    }
+    
     
     // Método para obtener la dirección de correo electrónico del usuario por su ID
 public function obtenerCorreoUsuario($id_usuario) {

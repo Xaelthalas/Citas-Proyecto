@@ -25,6 +25,9 @@ if (isset($_GET['id'])) {
             // Obtener la respuesta del formulario
             $respuesta = $_POST['respuesta'];
             
+            // Obtener el correo del usuario asociado al comentario
+            $correo_usuario = $citas->obtenerCorreoUsuarioPorComentario($comentario_id);
+            
             // Enviar correo electrónico al usuario con la respuesta
             try {
                 // Configurar PHPMailer
@@ -37,7 +40,7 @@ if (isset($_GET['id'])) {
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
                 $mail->setFrom('alejandroola8@gmail.com', 'Alejandro');
-                $mail->addAddress($comentario['CorreoUsuario']);
+                $mail->addAddress($correo_usuario);
                 $mail->isHTML(true);
                 $mail->Subject = 'RE: ' . $comentario['Asunto'];
                 $mail->Body = $respuesta;

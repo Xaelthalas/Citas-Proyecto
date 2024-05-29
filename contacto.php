@@ -17,7 +17,19 @@ $id_usuario = $_SESSION['id_usuario'];
 // Obtener el nombre del usuario
 $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 
-// Aquí puedes incluir cualquier encabezado, barra de navegación, etc., que desees mostrar en todas las páginas
+// Manejar el envío del formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $asunto = $_POST['asunto'];
+    $cuerpo = $_POST['cuerpo'];
+
+    // Insertar el comentario en la base de datos
+    $insertarComentario = $citas->insertarComentario($id_usuario, $asunto, $cuerpo);
+    if ($insertarComentario) {
+        $mensaje = "Comentario enviado con éxito.";
+    } else {
+        $mensaje = "Error al enviar el comentario.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +38,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú de Usuario</title>
+    <title>Contacto</title>
     <!-- Enlace al CSS de Bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
@@ -63,30 +75,9 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
             margin-left: 20px; /* Margen izquierdo para separar del borde */
         }
 
-        /* Estilos para el h2 */
-        h2 {
-            text-align: center;
-            margin-top: 20px;
-            font-family: Arial, sans-serif;
-            color: #2E7D32; /* verde más oscuro */
-            border-bottom: 2px solid #81C784; /* verde más claro */
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        /* Estilos para los botones */
-        .menu-button {
-            display: block;
-            margin: 0 auto;
-            width: 200px; /* Ajusta el ancho según sea necesario */
-            text-align: center;
-        }
-
-        /* Estilos para el texto explicativo */
-        .explanation {
-            text-align: center;
-            margin-top: 20px;
-            color: #555; /* Color de texto gris */
+        /* Estilos para el formulario */
+        .form-container {
+            margin-top: 50px;
         }
     </style>
 </head>
@@ -101,30 +92,26 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
         </button>
     </div>
 
-    <div class="container">
-        <h2>¿Qué operación quieres realizar?</h2>
-        <div class="row justify-content-center mt-3">
-            <div class="col-md-6 col-sm-12"> <!-- Se muestra en una sola columna en dispositivos pequeños -->
-                <ul class="list-inline text-center">
-                    <li class="list-inline-item mb-2 mr-md-2"> <!-- Añadido: margen derecho y abajo, y ajuste para dispositivos medianos -->
-                        <a href="reservar_cita.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-calendar-plus"></i> Reservar una cita
-                        </a>
-                    </li>
-                    <li class="list-inline-item mb-2">
-                        <a href="mostrar_citas.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-list"></i> Ver mis citas
-                        </a>
-                    </li>
-                    <li class="list-inline-item mb-2">
-                        <a href="contacto.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-envelope"></i> Contactar
-                        </a>
-                    </li>
-                </ul>
+    <div class="container form-container">
+        <h2>Contacto</h2>
+        <?php if (isset($mensaje)): ?>
+            <div class="alert alert-info" role="alert">
+                <?php echo $mensaje; ?>
             </div>
-        </div>
-        <p class="explanation">Selecciona una opción para continuar.</p>
+        <?php endif; ?>
+        <form method="POST" action="contacto.php">
+            <div class="form-group">
+                <label for="asunto">Asunto:</label>
+                <input type="text" class="form-control" id="asunto" name="asunto" required>
+            </div>
+            <div class="form-group">
+                <label for="cuerpo">Cuerpo:</label>
+                <textarea class="form-control" id="cuerpo" name="cuerpo" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='menuusuario.php'">Volver</button>
+
+        </form>
     </div>
 
     <!-- Enlace al JS de Bootstrap -->

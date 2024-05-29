@@ -1,44 +1,33 @@
 <?php
-session_start();
+// Incluir la clase Citas
 require "citas.php";
 
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['id_usuario'])) {
-    header("Location: login.php"); // Redirigir al usuario al inicio de sesión si no ha iniciado sesión
+// Iniciar sesión
+session_start();
+
+// Verificar si el usuario ha iniciado sesión y si es administrador
+if (!isset($_SESSION['id_usuario']) || !((new Citas())->esAdmin($_SESSION['id_usuario']))) {
+    header("Location: login.php"); // Redirigir al usuario al inicio de sesión si no ha iniciado sesión o no es administrador
     exit();
 }
 
 // Obtener el ID del usuario de la sesión
 $id_usuario = $_SESSION['id_usuario'];
 
-// Crear una instancia de la clase Citas
+// Crear un objeto de la clase Citas
 $citas = new Citas();
-
-// Verificar si el usuario es administrador
-if (!$citas->esAdmin($id_usuario)) {
-    header("Location: login.php");
-    exit();
-} 
-
-// Obtener el nombre del usuario
 $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 
-// Actualizar el estado de las citas
-$citas->actualizarEstadoCitas();
-
-// Aquí puedes incluir cualquier encabezado, barra de navegación, etc., que desees mostrar en todas las páginas
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú de Usuario</title>
-    <!-- Enlace al CSS de Bootstrap -->
+    <title>Comentarios Administrador</title>
+    <link rel="stylesheet" href="css.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Enlace a la biblioteca de iconos de Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         /* Estilos para el encabezado */
         .header {
@@ -51,9 +40,24 @@ $citas->actualizarEstadoCitas();
             border-bottom: 2px solid #388E3C; /* verde más oscuro */
         }
 
+        /* Estilos para el botón de cerrar sesión */
+        .logout-button {
+            background-color: #f44336; /* rojo */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin-right: 20px;
+            cursor: pointer;
+        }
+
         /* Estilos para el texto de bienvenida */
         .welcome-text {
             font-size: 18px;
+            margin-right: auto; /* Esto empuja el texto hacia la derecha */
             margin-left: 20px; /* Margen izquierdo para separar del borde */
         }
 
@@ -68,12 +72,21 @@ $citas->actualizarEstadoCitas();
             margin-bottom: 20px;
         }
 
+        /* Estilos para la tabla */
+        .table {
+            text-align: center;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+            color: #555; /* Color de texto gris */
+        }
+
         /* Estilos para los botones */
-        .menu-button {
+        .btn {
             display: block;
             margin: 0 auto;
             width: 200px; /* Ajusta el ancho según sea necesario */
             text-align: center;
+            margin-top: 20px;
         }
 
         /* Estilos para el texto explicativo */
@@ -81,6 +94,10 @@ $citas->actualizarEstadoCitas();
             text-align: center;
             margin-top: 20px;
             color: #555; /* Color de texto gris */
+        }
+        th {
+            background-color: #4CAF50; /* verde */
+            color: white;
         }
     </style>
 </head>
@@ -90,33 +107,38 @@ $citas->actualizarEstadoCitas();
         <!-- Nombre de usuario -->
         <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
         <!-- Botón para cerrar sesión -->
-        <button class="btn btn-danger" onclick="window.location.href='cerrar_sesion.php'">
+        <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
         </button>
     </div>
 
+    <h2>Comentarios</h2>
+
     <div class="container">
-        <h2>¿Qué operación quieres realizar?</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-green">
+                    <tr>
+                        <th>DNI Usuario</th>
+                        <th>Asunto</th>
+                        <th>Funciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    $citas->mostrarTodosLosComentarios(); 
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="container">
         <div class="row justify-content-center mt-3">
-            <div class="col-md-6 col-sm-12"> <!-- Se muestra en una sola columna en dispositivos pequeños -->
-                <ul class="list-inline text-center">
-                <li class="list-inline-item mb-2">                        <a href="adminusu.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-people"></i> Ver Usuarios
-                        </a>
-                    </li>
-                    <li class="list-inline-item mb-2">                        <a href="admincitas.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-calendar-check"></i> Ver Citas
-                        </a>
-                    </li>
-                    <li class="list-inline-item mb-2">
-                        <a href="comentariosadmin.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-envelope"></i> Ver comentarios
-                        </a>
-                    </li>
-                </ul>
+            <div class="col-md-2">
+                <button type="button" class="btn btn-primary" onclick="window.location.href='menuadmin.php'">Volver</button>
             </div>
         </div>
-        <p class="explanation">Selecciona una opción para continuar.</p>
     </div>
 
     <!-- Enlace al JS de Bootstrap -->
