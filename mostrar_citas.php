@@ -23,11 +23,11 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/mostrar_cita.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Citas</title>
-    <link rel="stylesheet" href="css.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -35,6 +35,8 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <div class="header">
         <!-- Nombre de usuario -->
         <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
+        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+
         <!-- Botón para cerrar sesión -->
         <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
@@ -67,13 +69,14 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     </div>
 
     <div class="container">
-        <div class="row justify-content-center mt-3">
-            <div class="col-md-4">
-                <button type="button" class="btn btn-primary" onclick="window.location.href='menuusuario.php'">Volver</button>
-                <p class="explanation">Haz clic en "Volver" para regresar al menú principal.</p>
-            </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-4 text-center"> <!-- Agregado 'text-center' para centrar el contenido -->
+            <button type="button" class="btn btn-primary" onclick="window.location.href='menuusuario.php'">Volver</button>
+            <p class="explanation">Haz clic en "Volver" para regresar al menú principal.</p>
         </div>
     </div>
+</div>
+
 
     <!-- Enlace al JS de Bootstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

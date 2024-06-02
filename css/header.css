@@ -1,0 +1,40 @@
+/* Estilos para el encabezado */
+.header {
+    background-color: #255E1A; /* Color de fondo verde */
+    color: white; /* Color de texto blanco */
+    padding: 10px 20px; /* Padding interno */
+    display: flex; /* Flexbox para alineación */
+    justify-content: space-between; /* Espacio entre elementos */
+    align-items: center; /* Alinear elementos verticalmente */
+    position: relative; /* Posición relativa para el logo */
+}
+
+/* Estilos para el texto de bienvenida */
+.welcome-text {
+    font-size: 18px; /* Tamaño de fuente */
+    margin-right: auto; /* Margen derecho automático */
+    margin-left: 20px; /* Margen izquierdo */
+}
+
+/* Estilos para el botón de cerrar sesión */
+.logout-button {
+    background-color: #f44336; /* Color de fondo rojo */
+    color: white; /* Color de texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Padding interno */
+    text-align: center; /* Centrar texto */
+    text-decoration: none; /* Sin decoración de texto */
+    display: inline-block; /* Mostrar como bloque */
+    font-size: 16px; /* Tamaño de fuente */
+    margin-right: 20px; /* Margen derecho */
+    cursor: pointer; /* Cursor de puntero */
+}
+
+/* Estilos para el logo del encabezado */
+.header-logo {
+    height: 50px; /* Altura del logo */
+    position: absolute; /* Posición absoluta para centrar el logo */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translateX(-50%); /* Ajuste para centrar exactamente */
+}
+

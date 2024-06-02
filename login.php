@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="css/login.css">
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,88 +53,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        /* Estilos para el contenedor del formulario de inicio de sesión */
-        .login-container {
-            margin-top: 100px;
-        }
-
-        /* Estilos para el formulario */
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        /* Estilos para el botón de inicio de sesión */
-        button[type="submit"] {
-            padding: 10px;
-            background-color: #4CAF50; /* verde */
-            border: none;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-        }
-
-        /* Estilos para el enlace de registro */
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #4CAF50; /* verde */
-        }
-
-        /* Estilos para los errores */
-        .error {
-            color: #f44336; /* rojo */
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        /* Estilos para el título */
-        h2 {
-            color: #4CAF50;
-            text-align: center;
-        }
-        body {
-        margin-bottom: 150px; /* Ensure the body has space at the bottom */
-    }
-
-    .footer {
-        background-color: #255E1A; /* Matching header color */
-        color: white;
-        padding: 20px 0;
-        text-align: center;
-        border-top: 2px solid #1E4A15; /* Slightly darker shade */
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        font-family: 'Arial', sans-serif;
-        font-size: 14px;
-    }
-
-    .footer-content {
-        display: flex;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .footer-column {
-        flex: 1;
-        padding: 0 10px;
-        line-height: 1.6;
-    }
-
-    .footer-column p {
-        margin: 5px 0;
-    }
-    </style>
+   
 </head>
 <body>
+<div class="header">
+        <!-- Nombre de usuario -->
+        <span class="welcome-text">Bienvenido al IES Kursaal</span>
+        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+
+        <!-- Botón para cerrar sesión -->
+        <span class="telefono-text">Teléfono: 956670767 – 61</span>
+
+    </div>
     <div class="container">
         <div class="login-container">
             <h2>Iniciar Sesión</h2>

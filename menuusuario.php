@@ -23,6 +23,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/menusuario.css">
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
@@ -33,7 +34,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-       
+   
     </style>
 </head>
 <body>
@@ -41,6 +42,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <div class="header">
         <!-- Nombre de usuario -->
         <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
+        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
         <!-- Botón para cerrar sesión -->
         <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión

@@ -1,78 +1,113 @@
-  /* Estilos para el contenedor del formulario de inicio de sesión */
-  .login-container {
-    margin-top: 100px;
+/* Estilos para el encabezado */
+.header {
+    background-color: #255E1A; /* Color de fondo verde */
+    color: white; /* Color de texto blanco */
+    padding: 20px 20px; /* Padding interno */
+    display: flex; /* Flexbox para alineación */
+    justify-content: space-between; /* Espacio entre los elementos */
+    align-items: center; /* Alinear elementos verticalmente al centro */
+    border-bottom: 2px solid #388E3C; /* Borde inferior verde más oscuro */
+    position: relative; /* Posición relativa para el logo */
+    margin-bottom: 30px; /* Margen inferior para separación */
+}
+
+/* Estilos para el texto de bienvenida */
+.welcome-text {
+    font-size: 18px; /* Tamaño de fuente */
+    margin-right: auto; /* Empuja el texto hacia la derecha */
+    margin-left: 20px; /* Margen izquierdo para separación */
+}
+
+/* Estilos para el logo del encabezado */
+.header-logo {
+    position: absolute; /* Posición absoluta para centrar el logo */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translateX(-50%); /* Ajuste para centrar exactamente */
+    height: 50px; /* Altura del logo */
+}
+
+/* Estilos para el título h2 */
+h2 {
+    text-align: center; /* Centrar texto */
+    margin-top: 20px; /* Margen superior */
+    font-family: Arial, sans-serif; /* Fuente */
+    color: #4CAF50; /* Color verde */
+    border-bottom: 2px solid #81C784; /* Borde inferior verde más claro */
+    padding-bottom: 10px; /* Padding inferior */
+    margin-bottom: 30px; /* Margen inferior para separación */
 }
 
 /* Estilos para el formulario */
 form {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    margin-top: 20px; /* Margen superior */
+    max-width: 400px; /* Ancho máximo */
+    margin: 30px auto; /* Centrar horizontalmente con margen superior */
+    padding: 20px; /* Padding interno */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 5px; /* Bordes redondeados */
 }
 
 /* Estilos para el botón de inicio de sesión */
 button[type="submit"] {
-    padding: 10px;
-    background-color: #4CAF50; /* verde */
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
+    padding: 10px; /* Padding interno */
+    background-color: #4CAF50; /* Color de fondo verde */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    color: white; /* Color de texto blanco */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
 }
 
 /* Estilos para el enlace de registro */
 a {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #4CAF50; /* verde */
+    display: block; /* Convertir en bloque */
+    text-align: center; /* Centrar texto */
+    margin-top: 20px; /* Margen superior */
+    color: #4CAF50; /* Color de texto verde */
 }
 
 /* Estilos para los errores */
 .error {
-    color: #f44336; /* rojo */
-    margin-top: 10px;
-    text-align: center;
+    color: #f44336; /* Color rojo */
+    margin-top: 10px; /* Margen superior */
+    text-align: center; /* Centrar texto */
 }
 
-/* Estilos para el título */
-h2 {
-    color: #4CAF50;
-    text-align: center;
-}
+/* Estilos para el cuerpo del documento */
 body {
-margin-bottom: 150px; /* Ensure the body has space at the bottom */
+    margin-bottom: 150px; /* Asegurar espacio en la parte inferior */
 }
 
+/* Estilos para el pie de página */
 .footer {
-background-color: #255E1A; /* Matching header color */
-color: white;
-padding: 20px 0;
-text-align: center;
-border-top: 2px solid #1E4A15; /* Slightly darker shade */
-position: fixed;
-bottom: 0;
-width: 100%;
-font-family: 'Arial', sans-serif;
-font-size: 14px;
+    background-color: #255E1A; /* Color de fondo verde */
+    color: white; /* Color de texto blanco */
+    padding: 20px 0; /* Padding superior e inferior */
+    text-align: center; /* Centrar texto */
+    border-top: 2px solid #1E4A15; /* Borde superior verde oscuro */
+    position: fixed; /* Fijar al fondo */
+    bottom: 0; /* Posicionar al fondo */
+    width: 100%; /* Ancho completo */
+    font-family: 'Arial', sans-serif; /* Fuente */
+    font-size: 14px; /* Tamaño de fuente */
 }
 
+/* Estilos para el contenido del pie de página */
 .footer-content {
-display: flex;
-justify-content: space-between;
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 20px;
+    display: flex; /* Flexbox para alineación */
+    justify-content: space-between; /* Espacio entre columnas */
+    max-width: 1200px; /* Ancho máximo */
+    margin: 0 auto; /* Centrar horizontalmente */
+    padding: 0 20px; /* Padding interno */
 }
 
+/* Estilos para las columnas del pie de página */
 .footer-column {
-flex: 1;
-padding: 0 10px;
-line-height: 1.6;
+    flex: 1; /* Flex para distribuir espacio equitativamente */
+    padding: 0 10px; /* Padding interno */
+    line-height: 1.6; /* Altura de línea */
 }
 
+/* Estilos para los párrafos en las columnas del pie de página */
 .footer-column p {
-margin: 5px 0;
+    margin: 5px 0; /* Márgenes verticales */
 }

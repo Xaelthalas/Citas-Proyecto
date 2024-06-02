@@ -222,14 +222,22 @@ public function obtenerCorreoUsuario($id_usuario) {
     public function altaUsuario($dni, $nombre, $apellidos, $email, $contrasena, $rol) {
         // Validar el formato del email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "El email no tiene un formato válido.";
             return false; // El email no tiene un formato válido
         }
-
+    
+        // Validar el formato del DNI (8 dígitos y una letra)
+        if (!preg_match('/^[0-9]{8}[a-zA-Z]$/', $dni)) {
+            echo "El DNI no tiene un formato válido.";
+            return false; // El DNI no tiene un formato válido
+        }
+    
         // Construimos la consulta SQL para insertar un nuevo usuario
         $sql = "INSERT INTO Usuarios (DNI, Nombre, Apellidos, Email, Contraseña, Rol) VALUES ('$dni', '$nombre', '$apellidos', '$email', '$contrasena', '$rol')";
         // Ejecutamos la consulta
         return $this->ejecuta_SQL($sql);
     }
+    
 
     // Método para reservar una cita
     public function reservarCita($id_usuario, $fecha, $hora, $estado, $motivo) {

@@ -1,110 +1,109 @@
-      /* Estilos para el encabezado */
-      .header {
-        background-color: #255E1A; /* verde */
-        color: white;
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 2px solid #388E3C; /* verde más oscuro */
-        position: relative;
-    }
+/* Estilos para el encabezado */
+.header {
+    background-color: #255E1A; /* Color de fondo verde */
+    color: white; /* Color de texto blanco */
+    padding: 10px 20px; /* Padding interno */
+    display: flex; /* Flexbox para alineación */
+    justify-content: space-between; /* Espacio entre elementos */
+    align-items: center; /* Alinear elementos verticalmente */
+    border-bottom: 2px solid #388E3C; /* Borde inferior verde más oscuro */
+    position: relative; /* Posición relativa para el logo */
+}
 
-    /* Estilos para el texto de bienvenida */
-    .welcome-text {
-        font-size: 18px;
-        margin-right: auto;
-        margin-left: 20px;
-    }
+/* Estilos para el texto de bienvenida */
+.welcome-text {
+    font-size: 18px; /* Tamaño de fuente */
+    margin-right: auto; /* Margen derecho automático */
+    margin-left: 20px; /* Margen izquierdo */
+}
 
-    /* Estilos para el botón de cerrar sesión */
-    .logout-button {
-        background-color: #f44336; /* rojo */
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin-right: 20px;
-        cursor: pointer;
-    }
+/* Estilos para el botón de cerrar sesión */
+.logout-button {
+    background-color: #f44336; /* Color de fondo rojo */
+    color: white; /* Color de texto blanco */
+    border: none; /* Sin borde */
+    padding: 10px 20px; /* Padding interno */
+    text-align: center; /* Centrar texto */
+    text-decoration: none; /* Sin decoración de texto */
+    display: inline-block; /* Mostrar como bloque */
+    font-size: 16px; /* Tamaño de fuente */
+    margin-right: 20px; /* Margen derecho */
+    cursor: pointer; /* Cursor de puntero */
+}
 
-    /* Estilos para el logo del encabezado */
-    .header-logo {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        height: 50px; /* Ajusta la altura del logo según sea necesario */
-    }
-        /* Estilos para el texto de bienvenida */
-        .welcome-text {
-            font-size: 18px;
-            margin-right: auto; /* Esto empuja el texto hacia la derecha */
-            margin-left: 20px; /* Margen izquierdo para separar del borde */
-        }
+/* Estilos para el logo del encabezado */
+.header-logo {
+    position: absolute; /* Posición absoluta */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translateX(-50%); /* Centrar exactamente */
+    height: 50px; /* Altura del logo */
+}
 
-        /* Estilos para el h2 */
-        h2 {
-            text-align: center;
-            margin-top: 20px;
-            font-family: Arial, sans-serif;
-            color: #2E7D32; /* verde más oscuro */
-            border-bottom: 2px solid #81C784; /* verde más claro */
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
+/* Estilos para el título h2 */
+h2 {
+    text-align: center; /* Centrar texto */
+    margin-top: 20px; /* Margen superior */
+    font-family: Arial, sans-serif; /* Fuente */
+    color: #2E7D32; /* Color verde más oscuro */
+    border-bottom: 2px solid #81C784; /* Borde inferior verde más claro */
+    padding-bottom: 10px; /* Padding inferior */
+    margin-bottom: 20px; /* Margen inferior */
+}
 
-        /* Estilos para los botones */
-        .menu-button {
-            display: block;
-            margin: 20px auto; /* Añadir márgenes superior e inferior */
-            width: 100%; /* Ajusta el ancho según sea necesario */
-            max-width: 400px; /* Máximo ancho del botón */
-            height: 60px; /* Ajusta la altura según sea necesario */
-            font-size: 20px; /* Tamaño de fuente más grande */
-            text-align: center;
-        }
+/* Estilos para los botones del menú */
+.menu-button {
+    display: block; /* Mostrar como bloque */
+    margin: 20px auto; /* Margen superior e inferior automático */
+    width: 100%; /* Ancho completo */
+    max-width: 400px; /* Ancho máximo */
+    height: 60px; /* Altura */
+    font-size: 20px; /* Tamaño de fuente */
+    text-align: center; /* Centrar texto */
+}
 
-        /* Estilos para el texto explicativo */
-        .explanation {
-            text-align: center;
-            margin-top: 10px;
-            color: #555; /* Color de texto gris */
-        }
-       
-    body {
-        margin-bottom: 150px; /* Ensure the body has space at the bottom */
-    }
+/* Estilos para el texto explicativo */
+.explanation {
+    text-align: center; /* Centrar texto */
+    margin-top: 10px; /* Margen superior */
+    color: #555; /* Color de texto gris */
+}
 
-    .footer {
-        background-color: #255E1A; /* Matching header color */
-        color: white;
-        padding: 20px 0;
-        text-align: center;
-        border-top: 2px solid #1E4A15; /* Slightly darker shade */
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        font-family: 'Arial', sans-serif;
-        font-size: 14px;
-    }
+/* Estilos para el cuerpo del documento */
+body {
+    margin-bottom: 150px; /* Espacio en la parte inferior */
+}
 
-    .footer-content {
-        display: flex;
-        justify-content: space-between;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
+/* Estilos para el pie de página */
+.footer {
+    background-color: #255E1A; /* Color de fondo verde */
+    color: white; /* Color de texto blanco */
+    padding: 20px 0; /* Padding superior e inferior */
+    text-align: center; /* Centrar texto */
+    border-top: 2px solid #1E4A15; /* Borde superior verde oscuro */
+    position: fixed; /* Fijar posición */
+    bottom: 0; /* Posicionar al fondo */
+    width: 100%; /* Ancho completo */
+    font-family: 'Arial', sans-serif; /* Fuente */
+    font-size: 14px; /* Tamaño de fuente */
+}
 
-    .footer-column {
-        flex: 1;
-        padding: 0 10px;
-        line-height: 1.6;
-    }
+/* Estilos para el contenido del pie de página */
+.footer-content {
+    display: flex; /* Flexbox para alineación */
+    justify-content: space-between; /* Espacio entre columnas */
+    max-width: 1200px; /* Ancho máximo */
+    margin: 0 auto; /* Margen horizontal automático */
+    padding: 0 20px; /* Padding interno */
+}
 
-    .footer-column p {
-        margin: 5px 0;
-    }
+/* Estilos para las columnas del pie de página */
+.footer-column {
+    flex: 1; /* Flex para distribuir espacio equitativamente */
+    padding: 0 10px; /* Padding interno */
+    line-height: 1.6; /* Altura de línea */
+}
+
+/* Estilos para los párrafos en las columnas del pie de página */
+.footer-column p {
+    margin: 5px 0; /* Margen vertical */
+}

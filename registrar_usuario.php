@@ -10,13 +10,24 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="validaciones.js"></script>
+
 
 </head>
 <body>
+<div class="header">
+        <!-- Nombre de usuario -->
+        <span class="welcome-text">Bienvenido al IES Kursaal</span>
+        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+
+        <!-- Botón para cerrar sesión -->
+        <span class="telefono-text">Teléfono: 956670767 – 61</span>
+
+    </div>
     <div class="container">
         <div class="form-container">
             <h2 class="text-center">Registro de Usuario</h2>
-            <form action="registrar_usuario.php" method="POST">
+            <form action="registrar_usuario.php" method="POST" onsubmit="return validarFormulario()">
                 <div class="form-group">
                     <label for="dni">DNI:</label>
                     <input type="text" class="form-control" id="dni" name="dni" required>
@@ -39,35 +50,51 @@
                 </div>
                 <!-- Agregar campo oculto para el rol con valor predeterminado "usuario" -->
                 <input type="hidden" name="rol" value="usuario">
-                <button type="submit" class="btn btn-primary">
-                    <i class="bi bi-person-plus"></i> Registrarse
-                </button>
+                <div class="button-container">
+    <button type="submit" class="btn btn-primary">
+        <i class="bi bi-person-plus"></i> Registrarse
+    </button>
+    <div class="center-button">
+        <button type="button" class="btn btn-secondary menu-button" onclick="window.location.href='menuusuario.php'">Volver</button>
+    </div>
+</div>
+
             </form>
+
             <?php
-            require "citas.php";
+require "citas.php";
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $citas = new Citas();
-                $citas->actualizarEstadoCitas();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $citas = new Citas();
+    $citas->actualizarEstadoCitas();
 
-                // Obtener datos del formulario
-                $dni = $_POST["dni"];
-                $nombre = $_POST["nombre"];
-                $apellidos = $_POST["apellidos"];
-                $email = $_POST["email"];
-                $contrasena = $_POST["contrasena"];
-                // Obtener el rol del campo oculto
-                $rol = $_POST["rol"];
+    // Obtener datos del formulario
+    $dni = $_POST["dni"];
+    $nombre = $_POST["nombre"];
+    $apellidos = $_POST["apellidos"];
+    $email = $_POST["email"];
+    $contrasena = $_POST["contrasena"];
+    // Obtener el rol del campo oculto
+    $rol = $_POST["rol"];
 
-                // Dar de alta al usuario
-                if ($citas->altaUsuario($dni, $nombre, $apellidos, $email, $contrasena, $rol)) {
-                    echo "<div class='success'>Usuario registrado exitosamente.</div>";
-                    header("Location: login.php");
-                } else {
-                    echo "<div class='error'>Error al registrar usuario.</div>";
-                }
-            }
-            ?>
+    try {
+        // Dar de alta al usuario
+        if ($citas->altaUsuario($dni, $nombre, $apellidos, $email, $contrasena, $rol)) {
+            echo "<div class='success'>Usuario registrado exitosamente.</div>";
+            header("Location: login.php");
+        } else {
+            echo "<div class='error'>Error al registrar usuario.</div>";
+        }
+    } catch (mysqli_sql_exception $e) {
+       } catch (mysqli_sql_exception $e) {
+    // Capturar excepción de duplicado de clave primaria
+    echo "<div class='error'>Error: El usuario ya existe.</div>";
+}
+
+    }
+
+?>
+
         </div>
     </div>
     <footer class="footer">
@@ -94,5 +121,6 @@
         </div>
     </div>
 </footer>
+
 </body>
 </html>

@@ -1,56 +1,54 @@
-body {
-    margin-bottom: 150px; /* Ensure the body has space at the bottom */
-}
-
-.footer {
-    background-color: #255E1A; /* Matching header color */
+/* Estilos para el encabezado */
+.header {
+    background-color: #255E1A;
     color: white;
-    padding: 20px 0;
-    text-align: center;
-    border-top: 2px solid #1E4A15; /* Slightly darker shade */
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    font-family: 'Arial', sans-serif;
-    font-size: 14px;
-}
-
-.footer-content {
+    padding: 20px;
     display: flex;
     justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    align-items: center;
+    border-bottom: 2px solid #388E3C;
+    position: relative;
+    margin-bottom: 30px;
 }
 
-.footer-column {
-    flex: 1;
-    padding: 0 10px;
-    line-height: 1.6;
+/* Estilos para el texto de bienvenida */
+.welcome-text {
+    font-size: 18px;
+    margin-left: 20px;
+}
+h2 {
+    text-align: center; /* Centrar texto */
+    margin-top: 20px; /* Margen superior */
+    font-family: Arial, sans-serif; /* Fuente */
+    color: #4CAF50; /* Color verde */
+    border-bottom: 2px solid #81C784; /* Borde inferior verde más claro */
+    padding-bottom: 10px; /* Padding inferior */
+    margin-bottom: 30px; /* Margen inferior para separación */
 }
 
-.footer-column p {
-    margin: 5px 0;
-}
- /* Estilos para el contenedor del formulario de registro de usuario */
- .form-container {
-    margin-top: 100px;
+/* Estilos para el logo del encabezado */
+.header-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
 }
 
 /* Estilos para el formulario */
 form {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    margin-top: 20px; /* Margen superior */
+    max-width: 400px; /* Ancho máximo */
+    margin: 30px auto; /* Centrar horizontalmente con margen superior */
+    padding: 10px; /* Padding interno */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 5px; /* Bordes redondeados */
 }
 
 /* Estilos para el botón de registro */
 button[type="submit"] {
     width: 100%;
     padding: 10px;
-    background-color: #4CAF50; /* verde */
+    background-color: #4CAF50;
     border: none;
     border-radius: 5px;
     color: white;
@@ -59,7 +57,51 @@ button[type="submit"] {
 
 /* Estilos para los errores */
 .error {
-    color: #f44336; /* rojo */
+    color: #f44336;
     margin-top: 10px;
     text-align: center;
+}
+
+/* Estilos para el footer */
+.footer {
+    background-color: #255E1A;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 2px solid #1E4A15;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+/* Estilos para el contenido del footer */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Estilos para las columnas del footer */
+.footer-column {
+    flex: 1;
+    padding: 0 10px;
+    line-height: 1.6;
+}
+
+/* Estilos para los párrafos del footer */
+.footer-column p {
+    margin: 5px 0;
+}
+.button-container {
+    text-align: center; /* Centra los elementos horizontalmente */
+    margin-top: 20px; /* Agrega un margen superior para separación */
+}
+
+.center-button {
+    padding-top: 10px;
+    display: inline-block; /* Permite centrar el botón */
 }

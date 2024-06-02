@@ -4,7 +4,7 @@ USE ReservasCitas;
 
 -- Creamos la tabla Usuarios
 CREATE TABLE IF NOT EXISTS Usuarios (
-    DNI VARCHAR(8) PRIMARY KEY,
+    DNI VARCHAR(9) PRIMARY KEY,
     Nombre VARCHAR(50),
     Apellidos VARCHAR(50),
     Email VARCHAR(100), -- Añadimos el campo Email
