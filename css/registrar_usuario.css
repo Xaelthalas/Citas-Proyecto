@@ -1,0 +1,65 @@
+body {
+    margin-bottom: 150px; /* Ensure the body has space at the bottom */
+}
+
+.footer {
+    background-color: #255E1A; /* Matching header color */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 2px solid #1E4A15; /* Slightly darker shade */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-column {
+    flex: 1;
+    padding: 0 10px;
+    line-height: 1.6;
+}
+
+.footer-column p {
+    margin: 5px 0;
+}
+ /* Estilos para el contenedor del formulario de registro de usuario */
+ .form-container {
+    margin-top: 100px;
+}
+
+/* Estilos para el formulario */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Estilos para el botón de registro */
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50; /* verde */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Estilos para los errores */
+.error {
+    color: #f44336; /* rojo */
+    margin-top: 10px;
+    text-align: center;
+}

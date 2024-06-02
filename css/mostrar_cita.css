@@ -1,0 +1,106 @@
+    /* Estilos para el encabezado */
+    .header {
+        background-color: #4CAF50; /* verde */
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #388E3C; /* verde más oscuro */
+    }
+
+    /* Estilos para el botón de cerrar sesión */
+    .logout-button {
+        background-color: #f44336; /* rojo */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-right: 20px;
+        cursor: pointer;
+    }
+
+    /* Estilos para el texto de bienvenida */
+    .welcome-text {
+        font-size: 18px;
+        margin-right: auto; /* Esto empuja el texto hacia la derecha */
+        margin-left: 20px; /* Margen izquierdo para separar del borde */
+    }
+
+    /* Estilos para el h2 */
+    h2 {
+        text-align: center;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+        color: #2E7D32; /* verde más oscuro */
+        border-bottom: 2px solid #81C784; /* verde más claro */
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+
+    /* Estilos para la tabla */
+    .table {
+        text-align: center;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;
+        color: #555; /* Color de texto gris */
+    }
+
+    /* Estilos para los botones */
+    .btn {
+        display: block;
+        margin: 0 auto;
+        width: 200px; /* Ajusta el ancho según sea necesario */
+        text-align: center;
+        margin-top: 20px;
+        height: 60px; /* Altura del botón */
+        font-size: 20px; /* Tamaño de la fuente */
+    }
+
+    /* Estilos para el texto explicativo */
+    .explanation {
+        text-align: center;
+        margin-top: 20px;
+        color: #555; /* Color de texto gris */
+    }
+    th {
+        background-color: #4CAF50; /* verde */
+        color: white;
+    }
+    body {
+    margin-bottom: 150px; /* Ensure the body has space at the bottom */
+}
+
+.footer {
+    background-color: #255E1A; /* Matching header color */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 2px solid #1E4A15; /* Slightly darker shade */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-column {
+    flex: 1;
+    padding: 0 10px;
+    line-height: 1.6;
+}
+
+.footer-column p {
+    margin: 5px 0;
+}

@@ -1,7 +1,5 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -57,13 +55,40 @@ if (!empty($fecha) && !empty($hora) && !empty($motivo)) {
 
             // Contenido del correo
             $mail->isHTML(true); // Establecer el formato del correo como HTML
-            $mail->Subject = 'Aviso de Registro de Cita';
-            $mail->Body    = "Hola,<br><br>Tu cita se ha registrado correctamente con los siguientes datos:<br><br>Fecha: $fecha<br>Hora: $hora<br>Motivo: $motivo<br><br>Gracias por usar nuestro servicio.";
-            $mail->AltBody = "Hola,\n\nTu cita se ha registrado correctamente con los siguientes datos:\n\nFecha: $fecha\nHora: $hora\nMotivo: $motivo\n\nGracias por usar nuestro servicio.";
+            $mail->Subject = 'Confirmación de Registro de Cita - IES Kuursal';
+            $mail->Body    = "
+                <p>Estimado/a usuario/a,</p>
+                <p>Nos complace informarle que su cita ha sido registrada correctamente en el IES Kuursal. A continuación, encontrará los detalles de su cita:</p>
+                <ul>
+                    <li><strong>Fecha:</strong> $fecha</li>
+                    <li><strong>Hora:</strong> $hora</li>
+                    <li><strong>Motivo:</strong> $motivo</li>
+                </ul>
+                <p>Le recordamos que es importante llegar puntualmente a su cita. Si necesita reprogramar o cancelar su cita, por favor, póngase en contacto con nosotros con la mayor antelación posible.</p>
+                <p>Gracias por confiar en los servicios del IES Kuursal.</p>
+                <p>Atentamente,</p>
+                <p>La Secretaría del IES Kuursal</p>
+            ";
+            $mail->AltBody = "
+                Estimado/a usuario/a,
+
+                Nos complace informarle que su cita ha sido registrada correctamente en el IES Kuursal. A continuación, encontrará los detalles de su cita:
+
+                - Fecha: $fecha
+                - Hora: $hora
+                - Motivo: $motivo
+
+                Le recordamos que es importante llegar puntualmente a su cita. Si necesita reprogramar o cancelar su cita, por favor, póngase en contacto con nosotros con la mayor antelación posible.
+
+                Gracias por confiar en los servicios del IES Kuursal.
+
+                Atentamente,
+                La Secretaría del IES Kuursal
+            ";
 
             $mail->send();
             // Redirigir a menuusuario.php después de enviar el correo
-            header("Location: menuusuario.php");
+            header("Location: reservar_cita.php");
             exit();
         } catch (Exception $e) {
             echo "Error al enviar el correo. Mailer Error: {$mail->ErrorInfo}";

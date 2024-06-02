@@ -31,6 +31,7 @@ $citas->actualizarEstadoCitas();
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="css/menuadmin.css">
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,50 +40,7 @@ $citas->actualizarEstadoCitas();
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
-    <style>
-        /* Estilos para el encabezado */
-        .header {
-            background-color: #4CAF50; /* verde */
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #388E3C; /* verde más oscuro */
-        }
 
-        /* Estilos para el texto de bienvenida */
-        .welcome-text {
-            font-size: 18px;
-            margin-left: 20px; /* Margen izquierdo para separar del borde */
-        }
-
-        /* Estilos para el h2 */
-        h2 {
-            text-align: center;
-            margin-top: 20px;
-            font-family: Arial, sans-serif;
-            color: #2E7D32; /* verde más oscuro */
-            border-bottom: 2px solid #81C784; /* verde más claro */
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        /* Estilos para los botones */
-        .menu-button {
-            display: block;
-            margin: 0 auto;
-            width: 200px; /* Ajusta el ancho según sea necesario */
-            text-align: center;
-        }
-
-        /* Estilos para el texto explicativo */
-        .explanation {
-            text-align: center;
-            margin-top: 20px;
-            color: #555; /* Color de texto gris */
-        }
-    </style>
 </head>
 <body>
 
@@ -121,5 +79,29 @@ $citas->actualizarEstadoCitas();
 
     <!-- Enlace al JS de Bootstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-column">
+            <p><strong>IES KURSAAL</strong></p>
+            <p>Avd. Virgen de Europa 4, 11202 Algeciras (Cádiz)</p>
+            <p>Teléfono: 956670767 – 61</p>
+            <p>Email: jefatura@ieskursaal.es</p>
+            <p>Código Centro: 11000371</p>
+        </div>
+        <div class="footer-column">
+            <p><strong>Información Legal</strong></p>
+            <p>Aviso Legal</p>
+            <p>Políticas de Cookies</p>
+            <p>Políticas de Privacidad</p>
+        </div>
+        <div class="footer-column">
+            <p><strong>SECRETARÍA</strong></p>
+            <p>Secretaría Virtual</p>
+            <p>Calendario Escolar</p>
+            <p>Escolarización Telemática</p>
+            <p>Escolarización con Impreso</p>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

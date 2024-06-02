@@ -16,7 +16,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     datepickerElement.setAttribute('min', today.toISOString().split('T')[0]);
     datepickerElement.setAttribute('max', nextMonth.toISOString().split('T')[0]);
-
+    
+    if (currentHour >= 14) {
+        datepicker.setOptions({
+            datesDisabled: [today]
+        });
+    }
     // Función para generar las opciones de tiempo
     function generateTimeOptions(selectedDate) {
         const timepicker = document.getElementById('timepicker');

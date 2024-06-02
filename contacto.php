@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="stylesheet" href="css/contacto.css">
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,53 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        /* Estilos para el encabezado */
-        .header {
-            background-color: #4CAF50; /* verde */
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #388E3C; /* verde más oscuro */
-        }
-
-        /* Estilos para el botón de cerrar sesión */
-        .logout-button {
-            background-color: #f44336; /* rojo */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        /* Estilos para el texto de bienvenida */
-        .welcome-text {
-            font-size: 18px;
-            margin-right: auto; /* Esto empuja el texto hacia la derecha */
-            margin-left: 20px; /* Margen izquierdo para separar del borde */
-        }
-
-        /* Estilos para el formulario */
-        .form-container {
-            margin-top: 50px;
-        }
-
-        /* Estilos para el título */
-        .custom-heading {
-            text-align: center;
-            font-family: 'Arial', sans-serif;
-            color: #333; /* Color de texto negro */
-            margin-top: 30px;
-            margin-bottom: 20px;
-            font-size: 28px;
-            text-transform: uppercase; /* Convertir texto a mayúsculas */
-            letter-spacing: 1px; /* Espaciado entre letras */
-        }
+       
     </style>
 </head>
 <body>
@@ -130,5 +85,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-column">
+            <p><strong>IES KURSAAL</strong></p>
+            <p>Avd. Virgen de Europa 4, 11202 Algeciras (Cádiz)</p>
+            <p>Teléfono: 956670767 – 61</p>
+            <p>Email: jefatura@ieskursaal.es</p>
+            <p>Código Centro: 11000371</p>
+        </div>
+        <div class="footer-column">
+            <p><strong>Información Legal</strong></p>
+            <p>Aviso Legal</p>
+            <p>Políticas de Cookies</p>
+            <p>Políticas de Privacidad</p>
+        </div>
+        <div class="footer-column">
+            <p><strong>SECRETARÍA</strong></p>
+            <p>Secretaría Virtual</p>
+            <p>Calendario Escolar</p>
+            <p>Escolarización Telemática</p>
+            <p>Escolarización con Impreso</p>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

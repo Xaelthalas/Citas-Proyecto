@@ -97,6 +97,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #4CAF50;
             text-align: center;
         }
+        body {
+        margin-bottom: 150px; /* Ensure the body has space at the bottom */
+    }
+
+    .footer {
+        background-color: #255E1A; /* Matching header color */
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+        border-top: 2px solid #1E4A15; /* Slightly darker shade */
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+    }
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .footer-column {
+        flex: 1;
+        padding: 0 10px;
+        line-height: 1.6;
+    }
+
+    .footer-column p {
+        margin: 5px 0;
+    }
     </style>
 </head>
 <body>
@@ -117,5 +151,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a href="registrar_usuario.php">Registrarse</a>
         </div>
     </div>
+    <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-column">
+            <p><strong>IES KURSAAL</strong></p>
+            <p>Avd. Virgen de Europa 4, 11202 Algeciras (Cádiz)</p>
+            <p>Teléfono: 956670767 – 61</p>
+            <p>Email: jefatura@ieskursaal.es</p>
+            <p>Código Centro: 11000371</p>
+        </div>
+        <div class="footer-column">
+            <p><strong>Información Legal</strong></p>
+            <p>Aviso Legal</p>
+            <p>Políticas de Cookies</p>
+            <p>Políticas de Privacidad</p>
+        </div>
+        <div class="footer-column">
+            <p><strong>SECRETARÍA</strong></p>
+            <p>Secretaría Virtual</p>
+            <p>Calendario Escolar</p>
+            <p>Escolarización Telemática</p>
+            <p>Escolarización con Impreso</p>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

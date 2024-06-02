@@ -58,7 +58,7 @@ if (isset($_GET['id'])) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    
+    <link rel="stylesheet" href="css/modificar_cita.css">
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,39 +67,6 @@ if (isset($_GET['id'])) {
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace al CSS de Vanilla JS Datepicker -->
     <link href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css" rel="stylesheet">
-    <style>
-        /* Estilos para el encabezado */
-        .header {
-            background-color: #4CAF50; /* verde */
-            color: white;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #388E3C; /* verde más oscuro */
-        }
-
-        /* Estilos para el botón de cerrar sesión */
-        .logout-button {
-            background-color: #f44336; /* rojo */
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin-right: 20px;
-            cursor: pointer;
-        }
-
-        /* Estilos para el texto de bienvenida */
-        .welcome-text {
-            font-size: 18px;
-            margin-right: auto; /* Esto empuja el texto hacia la derecha */
-            margin-left: 20px; /* Margen izquierdo para separar del borde */
-        }
-    </style>
 </head>
 <body>
 <!-- Encabezado fijo -->
@@ -218,5 +185,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-column">
+            <p><strong>IES KURSAAL</strong></p>
+            <p>Avd. Virgen de Europa 4, 11202 Algeciras (Cádiz)</p>
+            <p>Teléfono: 956670767 – 61</p>
+            <p>Email: jefatura@ieskursaal.es</p>
+            <p>Código Centro: 11000371</p>
+        </div>
+        <div class="footer-column">
+            <p><strong>Información Legal</strong></p>
+            <p>Aviso Legal</p>
+            <p>Políticas de Cookies</p>
+            <p>Políticas de Privacidad</p>
+        </div>
+        <div class="footer-column">
+            <p><strong>SECRETARÍA</strong></p>
+            <p>Secretaría Virtual</p>
+            <p>Calendario Escolar</p>
+            <p>Escolarización Telemática</p>
+            <p>Escolarización con Impreso</p>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

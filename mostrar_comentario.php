@@ -85,6 +85,30 @@ if (isset($_GET['id'])) {
 
     <!-- Enlace al JS de Bootstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <footer class="footer">
+    <div class="footer-content">
+        <div class="footer-column">
+            <p><strong>IES KURSAAL</strong></p>
+            <p>Avd. Virgen de Europa 4, 11202 Algeciras (Cádiz)</p>
+            <p>Teléfono: 956670767 – 61</p>
+            <p>Email: jefatura@ieskursaal.es</p>
+            <p>Código Centro: 11000371</p>
+        </div>
+        <div class="footer-column">
+            <p><strong>Información Legal</strong></p>
+            <p>Aviso Legal</p>
+            <p>Políticas de Cookies</p>
+            <p>Políticas de Privacidad</p>
+        </div>
+        <div class="footer-column">
+            <p><strong>SECRETARÍA</strong></p>
+            <p>Secretaría Virtual</p>
+            <p>Calendario Escolar</p>
+            <p>Escolarización Telemática</p>
+            <p>Escolarización con Impreso</p>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
 <?php
