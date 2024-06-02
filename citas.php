@@ -249,6 +249,22 @@ public function obtenerCorreoUsuario($id_usuario) {
         }
     }
 
+    public function eliminarComentario($id_comentario) {
+        // Consulta SQL para eliminar el comentario con el ID especificado
+        $consulta = "DELETE FROM Comentarios WHERE ID = $id_comentario";
+        // Ejecutamos la consulta
+        $resultado = $this->conexion->query($consulta);
+
+        // Verificamos si la consulta se ejecutó correctamente
+        if ($resultado) {
+            // Comentario eliminado correctamente
+            return true;
+        } else {
+            // Error al eliminar el comentario
+            echo "Error al eliminar el comentario: " . $this->conexion->error;
+            return false;
+        }
+    }
     // Método para eliminar una cita
     public function eliminarCita($id_cita) {
         // Consulta SQL para eliminar la cita con el ID especificado
