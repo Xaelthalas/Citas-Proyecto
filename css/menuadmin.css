@@ -1,5 +1,5 @@
- /* Estilos para el encabezado */
- .header {
+/* Estilos para el encabezado */
+.header {
     background-color: #4CAF50; /* verde */
     color: white;
     padding: 10px 20px;
@@ -12,6 +12,7 @@
 /* Estilos para el texto de bienvenida */
 .welcome-text {
     font-size: 18px;
+    margin-right: auto; /* Esto empuja el texto hacia la derecha */
     margin-left: 20px; /* Margen izquierdo para separar del borde */
 }
 
@@ -29,8 +30,10 @@ h2 {
 /* Estilos para los botones */
 .menu-button {
     display: block;
-    margin: 0 auto;
-    width: 200px; /* Ajusta el ancho según sea necesario */
+    margin: 20px auto; /* Añadir márgenes superior e inferior */
+    width: 250px; /* Ajusta el ancho según sea necesario */
+    height: 50px; /* Ajusta la altura según sea necesario */
+    font-size: 18px; /* Tamaño de fuente más grande */
     text-align: center;
 }
 
@@ -39,37 +42,59 @@ h2 {
     text-align: center;
     margin-top: 20px;
     color: #555; /* Color de texto gris */
-} body {
-margin-bottom: 150px; /* Ensure the body has space at the bottom */
+}
+
+/* Estilos para la disposición horizontal de los botones */
+.button-container {
+    display: flex;
+    justify-content: center; /* Centrar los botones horizontalmente */
+    align-items: flex-start; /* Alinear elementos al principio */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan en líneas si es necesario */
+}
+
+.button-item {
+    margin: 20px; /* Margen alrededor de cada botón */
+    text-align: center;
+    flex: 1; /* Permitir que los elementos crezcan en la misma proporción */
+    min-width: 250px; /* Ancho mínimo para que los botones no se hagan demasiado pequeños */
+    max-width: 300px; /* Ancho máximo para mantener los botones alineados */
+}
+
+.button-item p {
+    margin-top: 10px; /* Margen superior para el texto explicativo */
+}
+
+body {
+    margin-bottom: 150px; /* Ensure the body has space at the bottom */
 }
 
 .footer {
-background-color: #255E1A; /* Matching header color */
-color: white;
-padding: 20px 0;
-text-align: center;
-border-top: 2px solid #1E4A15; /* Slightly darker shade */
-position: fixed;
-bottom: 0;
-width: 100%;
-font-family: 'Arial', sans-serif;
-font-size: 14px;
+    background-color: #255E1A; /* Matching header color */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    border-top: 2px solid #1E4A15; /* Slightly darker shade */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
 }
 
 .footer-content {
-display: flex;
-justify-content: space-between;
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .footer-column {
-flex: 1;
-padding: 0 10px;
-line-height: 1.6;
+    flex: 1;
+    padding: 0 10px;
+    line-height: 1.6;
 }
 
 .footer-column p {
-margin: 5px 0;
+    margin: 5px 0;
 }
