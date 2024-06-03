@@ -72,14 +72,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <input type="text" class="form-control" name="username" placeholder="Dni" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group" >
                     <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">
                     <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
                 </button>
+                <a href="registrar_usuario.php" class="btn btn-secondary btn-block">
+                <i class="bi bi-person-plus"></i> Registrarse
+            </a>
             </form>
-            <a href="registrar_usuario.php">Registrarse</a>
+            
         </div>
     </div>
     <footer class="footer">
@@ -108,3 +111,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </footer>
 </body>
 </html>
+

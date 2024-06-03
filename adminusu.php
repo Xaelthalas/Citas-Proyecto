@@ -23,19 +23,22 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="stylesheet" href="css/header.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios</title>
-    <link rel="stylesheet" href="css.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/adminusu.css">
+    <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
 
     <div class="header">
         <!-- Nombre de usuario -->
         <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
+
+    <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+
         <!-- Botón para cerrar sesión -->
         <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
@@ -43,9 +46,10 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     </div>
 
     <h2>Usuarios</h2>
-<div class="table">
+<div class="table-responsive">
+
     <table class="table table-bordered">
-        <thead class="thead-green">
+        <thead class="thead">
             <tr>
                 <th>DNI</th>
                 <th>Nombre</th>

@@ -35,8 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="css/header.css">
+    
     <link rel="stylesheet" href="css/contacto.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="container form-container">
-        <h2 class="custom-heading">¡Contáctanos!</h2>
+        <h2 align="center" >¡Contáctanos!</h2>
         <?php if (isset($mensaje)): ?>
             <div class="alert alert-info" role="alert">
                 <?php echo $mensaje; ?>
@@ -75,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" class="form-control" id="asunto" name="asunto" required>
             </div>
             <div class="form-group">
-                <label for="cuerpo">Motivo:</label>
+                <label for="cuerpo">Mensaje:</label>
                 <textarea class="form-control" id="cuerpo" name="cuerpo" rows="5" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>

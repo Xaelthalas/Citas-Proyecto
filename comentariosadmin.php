@@ -23,8 +23,9 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="css/header.css">
+    
     <link rel="stylesheet" href="css/comentariosadmin.css">
+    <link rel="stylesheet" href="css/header.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comentarios Administrador</title>
@@ -37,6 +38,8 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <div class="header">
         <!-- Nombre de usuario -->
         <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
+        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+
         <!-- Botón para cerrar sesión -->
         <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
@@ -46,23 +49,24 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <h2>Comentarios</h2>
 
     <div class="container">
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead class="thead-green">
-                    <tr>
-                        <th>DNI Usuario</th>
-                        <th>Asunto</th>
-                        <th>Funciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                    $citas->mostrarTodosLosComentarios(); 
-                    ?>
-                </tbody>
-            </table>
-        </div>
+    <div class="table-responsive">
+        <table class="table table-bordered" >
+            <thead>
+                <tr>
+                    <th>DNI Usuario</th>
+                    <th>Asunto</th>
+                    <th>Funciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                $citas->mostrarTodosLosComentarios(); 
+                ?>
+            </tbody>
+        </table>
     </div>
+</div>
+
 
     <div class="container">
         <div class="row justify-content-center mt-3">

@@ -7,14 +7,16 @@ require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
 require "citas.php";
 
+
+
 // Verificar si se proporciona un ID de comentario en la URL
 if (isset($_GET['id'])) {
     // Obtener el ID del comentario desde la URL
     $comentario_id = $_GET['id'];
-    
+
     // Crear un objeto de la clase Citas
     $citas = new Citas();
-    
+
     // Obtener el comentario según su ID
     $comentario = $citas->obtenerComentarioPorID($comentario_id);
     
@@ -56,14 +58,26 @@ if (isset($_GET['id'])) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head>    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/mostrar_comentario.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle de Comentario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+
 </head>
 <body>
-
+<div class="header">
+        <!-- Nombre de usuario -->
+        <span class="welcome-text">Bienvenido, Administrador</span>
+        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+        <!-- Botón para cerrar sesión -->
+        <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
+            <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+        </button>
+</div>
     <div class="container">
         <div class="card mt-5">
             <div class="card-header">Asunto: <?php echo $comentario['Asunto']; ?></div>

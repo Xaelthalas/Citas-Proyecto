@@ -46,8 +46,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
             if (!$citas->tieneCitaPendiente($id_usuario)) {
                 // Reservar la cita
                 if ($citas->reservarCita($id_usuario, $fecha, $hora, 'Pendiente', $motivo)) {
-                    header("Location: email.php?usuario=$nombre_usuario&fecha=$fecha&hora=$hora&motivo=$motivo");
+                    $message = "Se ha realizado el registro correctamente";
                     $message_type = "success";
+                    header("Location: email.php?usuario=$nombre_usuario&fecha=$fecha&hora=$hora&motivo=$motivo");
                 } else {
                     $message = "Error al registrar la cita. Por favor, inténtelo nuevamente.";
                     $message_type = "danger";
@@ -70,8 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="css/header.css">
+   
     <link rel="stylesheet" href="css/reservar_cita.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
     <link href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css" rel="stylesheet">
 
     <!-- Otras etiquetas head -->
-    <script src="validaciones.js"></script>
 
 
 </head>
@@ -119,6 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
             </select>
             
         </div>
+        
         <div class="form-group">
             <label for="motivo">Motivo de la cita:</label>
             <select id="motivo" class="form-control" name="motivo">

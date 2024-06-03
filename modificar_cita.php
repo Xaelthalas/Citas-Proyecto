@@ -19,6 +19,7 @@ $citas = new Citas();
 
 // Obtener el nombre del usuario
 $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
+$citasReservadas = $citas->obtenerCitasReservadas();
 
 // Verificar si se ha recibido el parámetro ID
 if (isset($_GET['id'])) {
@@ -58,9 +59,10 @@ if (isset($_GET['id'])) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<link rel="stylesheet" href="css/header.css">
 
     <link rel="stylesheet" href="css/modificar_cita.css">
+    <link rel="stylesheet" href="css/header.css">
+
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -114,7 +116,9 @@ if (isset($_GET['id'])) {
         <button type="button" class="btn btn-secondary" onclick="window.location.href='menuusuario.php'">Volver</button>
     </form>
 </div>
-
+<script>
+    window.citasReservadas = <?php echo json_encode($citasReservadas); ?>;
+</script>
 <!-- Enlace al JS de Vanilla JS Datepicker -->
 <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker.min.js"></script>
 <script src="calendario.js"></script>

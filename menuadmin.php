@@ -31,8 +31,9 @@ $citas->actualizarEstadoCitas();
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="css/header.css">
+    
     <link rel="stylesheet" href="css/menuadmin.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

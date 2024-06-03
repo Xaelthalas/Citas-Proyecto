@@ -22,7 +22,7 @@ class Citas {
     }
 
     public function tieneCitaPendiente($id_usuario) {
-        $consulta = "SELECT * FROM Citas WHERE DNI_usuario = $id_usuario AND Estado = 'Pendiente'";
+        $consulta = "SELECT * FROM Citas WHERE DNI_usuario = '$id_usuario' AND Estado = 'Pendiente'";
         $resultado = $this->ejecuta_SQL($consulta);
 
         // Verificar si se obtuvo algún resultado
@@ -46,17 +46,20 @@ class Citas {
     }
 
     // Método para ejecutar una consulta SQL
-    public function ejecuta_SQL($sql) {
-        $resultado = $this->conexion->query($sql);
+public function ejecuta_SQL($sql) {
+    $resultado = $this->conexion->query($sql);
 
-        // Si no se obtiene resultado, mostrar el error
-        if (!$resultado) {
-            echo "<h3>No se ha podido ejecutar la consulta: <pre>$sql</pre></h3><p><u>Errores:</u>:</h3><pre>";
-            die("</pre>");
-        }
-
-        return $resultado;
+    // Si no se obtiene resultado, mostrar el error
+    if (!$resultado) {
+        // Mostrar el error de la consulta SQL
+        echo "<h3>No se ha podido ejecutar la consulta: <pre>$sql</pre></h3><p><u>Errores:</u></p><pre>";
+        echo $this->conexion->error; // Mostrar el mensaje de error de la base de datos
+        die("</pre>");
     }
+
+    return $resultado;
+}
+
     public function mostrarTodasLasCitas() {
         // Consulta SQL para obtener todas las citas
         $consulta = "SELECT ID, Fecha, Hora, Estado, Motivo, DNI_usuario FROM Citas";
@@ -147,7 +150,7 @@ public function obtenerComentarioPorID($comentario_id) {
     // Método para mostrar las citas del usuario
     public function mostrarCitas($id_usuario) {
         // Consulta SQL para obtener las citas del usuario
-        $consulta = "SELECT ID, Fecha, Hora, Estado, Motivo FROM Citas WHERE DNI_usuario = $id_usuario";
+        $consulta = "SELECT ID, Fecha, Hora, Estado, Motivo FROM Citas WHERE DNI_usuario = '$id_usuario'";
         
         // Ejecutamos la consulta
         $resultado = $this->ejecuta_SQL($consulta);
@@ -241,25 +244,38 @@ public function obtenerCorreoUsuario($id_usuario) {
 
     // Método para reservar una cita
     public function reservarCita($id_usuario, $fecha, $hora, $estado, $motivo) {
-        // Consulta SQL para insertar una nueva cita
-        $consulta = "INSERT INTO Citas (DNI_usuario, Fecha, Hora, Estado, Motivo) VALUES ('$id_usuario', '$fecha', '$hora', '$estado', '$motivo')";
-        // Ejecutamos la consulta
-        $resultado = $this->ejecuta_SQL($consulta);
+      
+        
     
-        // Verificamos si la consulta se ejecutó correctamente
-        if ($resultado) {
-            // Cita reservada correctamente
-            return true;
+        // Verificar que el usuario exista
+        $consulta_verificacion = "SELECT DNI FROM usuarios WHERE DNI = '$id_usuario'";
+        $resultado_verificacion = $this->ejecuta_SQL($consulta_verificacion);
+    
+        if ($resultado_verificacion && $resultado_verificacion->num_rows > 0) {
+            // Si el usuario existe, inserta la cita
+            $consulta_insertar = "INSERT INTO Citas (DNI_usuario, Fecha, Hora, Estado, Motivo) VALUES ('$id_usuario', '$fecha', '$hora', '$estado', '$motivo')";
+            $resultado_insertar = $this->ejecuta_SQL($consulta_insertar);
+    
+            // Verificamos si la consulta se ejecutó correctamente
+            if ($resultado_insertar) {
+                // Cita reservada correctamente
+                return true;
+            } else {
+                // Error al reservar la cita
+                echo "Error al reservar la cita: " . $this->conexion->error;
+                return false;
+            }
         } else {
-            // Error al reservar la cita
-            echo "Error al reservar la cita: " . $this->conexion->error;
+            // Si el usuario no existe, lanza un error
+            echo "Error: El usuario con DNI $id_usuario no existe.";
             return false;
         }
     }
+    
 
     public function eliminarComentario($id_comentario) {
         // Consulta SQL para eliminar el comentario con el ID especificado
-        $consulta = "DELETE FROM Comentarios WHERE ID = $id_comentario";
+        $consulta = "DELETE FROM Comentarios WHERE ID = '$id_comentario'";
         // Ejecutamos la consulta
         $resultado = $this->conexion->query($consulta);
 
@@ -276,7 +292,7 @@ public function obtenerCorreoUsuario($id_usuario) {
     // Método para eliminar una cita
     public function eliminarCita($id_cita) {
         // Consulta SQL para eliminar la cita con el ID especificado
-        $consulta = "DELETE FROM Citas WHERE ID = $id_cita";
+        $consulta = "DELETE FROM Citas WHERE ID = '$id_cita'";
         // Ejecutamos la consulta
         $resultado = $this->ejecuta_SQL($consulta);
     
@@ -332,7 +348,7 @@ public function obtenerNombreUsuario($id_usuario) {
             // Verificar si la fecha y hora de la cita han pasado
             if ($fecha_cita < $fecha_actual || ($fecha_cita == $fecha_actual && $hora_cita < $hora_actual)) {
                 // Actualizar el estado de la cita a "Finalizada"
-                $consulta_actualizar = "UPDATE Citas SET Estado = 'Finalizada' WHERE ID = $id_cita";
+                $consulta_actualizar = "UPDATE Citas SET Estado = 'Finalizada' WHERE ID = '$id_cita'";
                 $this->ejecuta_SQL($consulta_actualizar);
             }
         }
@@ -354,7 +370,7 @@ public function obtenerNombreUsuario($id_usuario) {
     }
     public function modificarCita($cita_id, $nueva_fecha, $nueva_hora, $nuevo_motivo) {
 // Consulta SQL para actualizar la fecha y hora de la cita
-$consulta = "UPDATE Citas SET Fecha = '$nueva_fecha', Hora = '$nueva_hora' WHERE ID = $cita_id";
+$consulta = "UPDATE Citas SET Fecha = '$nueva_fecha', Hora = '$nueva_hora' WHERE ID = '$cita_id'";
 // Ejecutamos la consulta
 $resultado = $this->ejecuta_SQL($consulta);
 

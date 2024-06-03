@@ -41,6 +41,7 @@ h2 {
 form {
     margin-top: 20px; /* Margen superior */
     max-width: 400px; /* Ancho máximo */
+    max-height: 400px;
     margin: 30px auto; /* Centrar horizontalmente con margen superior */
     padding: 20px; /* Padding interno */
     border: 1px solid #ddd; /* Borde gris claro */

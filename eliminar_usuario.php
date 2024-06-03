@@ -1,8 +1,6 @@
 <?php
-// Incluir la clase Citas
 require "citas.php";
 
-// Iniciar sesión
 session_start();
 
 // Verificar si el usuario ha iniciado sesión

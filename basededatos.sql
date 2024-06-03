@@ -22,7 +22,7 @@ INSERT IGNORE INTO Usuarios (DNI, Nombre, Apellidos, Email, Contraseña, Rol) VA
 -- Creamos la tabla Citas
 CREATE TABLE IF NOT EXISTS Citas (
     ID INT AUTO_INCREMENT PRIMARY KEY,
-    DNI_usuario VARCHAR(8),
+    DNI_usuario VARCHAR(9),
     Fecha DATE,
     Hora TIME,
     Estado VARCHAR(20),
@@ -35,6 +35,6 @@ CREATE TABLE IF NOT EXISTS Comentarios (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     Asunto VARCHAR(255),
     Cuerpo TEXT,
-    DNI_usuario VARCHAR(8),
+    DNI_usuario VARCHAR(9),
     FOREIGN KEY (DNI_usuario) REFERENCES Usuarios(DNI)
 );
