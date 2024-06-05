@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         minDate: today,
         maxDate: nextMonth,
         language: 'es',
+        weekStart: 1, // Comenzar la semana en lunes
     });
 
     datepickerElement.setAttribute('min', today.toISOString().split('T')[0]);

@@ -248,7 +248,7 @@ public function obtenerCorreoUsuario($id_usuario) {
         
     
         // Verificar que el usuario exista
-        $consulta_verificacion = "SELECT DNI FROM usuarios WHERE DNI = '$id_usuario'";
+        $consulta_verificacion = "SELECT DNI FROM Usuarios WHERE DNI = '$id_usuario'";
         $resultado_verificacion = $this->ejecuta_SQL($consulta_verificacion);
     
         if ($resultado_verificacion && $resultado_verificacion->num_rows > 0) {

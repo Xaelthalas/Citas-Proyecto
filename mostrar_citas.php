@@ -42,6 +42,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
         </button>
     </div>
+    <br>
 
     <h2>Mis Citas</h2>
     <p class="explanation">Aquí puedes ver todas tus citas reservadas. Puedes cancelar o editar una cita si es necesario.</p>

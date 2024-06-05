@@ -1,21 +1,27 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Establecer altura mínima del cuerpo para que ocupe al menos el 100% de la altura de la ventana */
+}
 /* Estilos para el encabezado */
 .header {
-    background-color: #255E1A;
-    color: white;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #388E3C;
-    position: relative;
-    margin-bottom: 30px;
+    background-color: #255E1A; /* Color de fondo verde */
+    color: white; /* Color de texto blanco */
+    padding: 10px 20px; /* Padding interno */
+    display: flex; /* Flexbox para alineación */
+    justify-content: space-between; /* Espacio entre elementos */
+    align-items: center; /* Alinear elementos verticalmente */
+    position: relative; /* Posición relativa para el logo */
 }
+
 
 /* Estilos para el texto de bienvenida */
 .welcome-text {
     font-size: 18px;
-    margin-left: 20px;
+    margin-right: auto; /* Empujar el texto hacia la izquierda */
 }
+
+/* Estilos para el título */
 h2 {
     text-align: center; /* Centrar texto */
     margin-top: 20px; /* Margen superior */
@@ -23,31 +29,39 @@ h2 {
     color: #4CAF50; /* Color verde */
     border-bottom: 2px solid #81C784; /* Borde inferior verde más claro */
     padding-bottom: 10px; /* Padding inferior */
-    margin-bottom: 30px; /* Margen inferior para separación */
+    margin-bottom: 20px; /* Margen inferior para separación reducido */
 }
 
 /* Estilos para el logo del encabezado */
 .header-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 50px;
+    height: 50px; /* Altura del logo */
+    position: absolute; /* Posición absoluta para centrar el logo */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translateX(-50%); /* Ajuste para centrar exactamente */
 }
+
+
 
 /* Estilos para el formulario */
 form {
     margin-top: 20px; /* Margen superior */
-    max-width: 400px; /* Ancho máximo */
-    margin: 30px auto; /* Centrar horizontalmente con margen superior */
-    padding: 10px; /* Padding interno */
+    max-width: 300px; /* Ancho máximo reducido */
+    margin: 20px auto; /* Centrar horizontalmente con margen superior */
+    padding: 10px; /* Padding interno reducido */
     border: 1px solid #ddd; /* Borde gris claro */
     border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para resaltar el formulario */
+}
+
+/* Estilos para los campos del formulario */
+.form-group {
+    margin-bottom: 10px; /* Reducir el margen inferior */
 }
 
 /* Estilos para el botón de registro */
 button[type="submit"] {
     width: 100%;
-    padding: 10px;
+    padding: 8px; /* Padding reducido */
     background-color: #4CAF50;
     border: none;
     border-radius: 5px;
@@ -58,7 +72,6 @@ button[type="submit"] {
 /* Estilos para los errores */
 .error {
     color: #f44336;
-    margin-top: 10px;
     text-align: center;
 }
 
@@ -69,13 +82,14 @@ button[type="submit"] {
     padding: 20px 0;
     text-align: center;
     border-top: 2px solid #1E4A15;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
     font-family: 'Arial', sans-serif;
     font-size: 14px;
+    margin-top: auto; /* Mover el footer hacia abajo para que se pegue al final de la página */
 }
-
+/* Estilos para el contenido principal */
+.container {
+    flex: 1; /* Hacer que el contenido principal ocupe todo el espacio restante */
+}
 /* Estilos para el contenido del footer */
 .footer-content {
     display: flex;
@@ -96,6 +110,7 @@ button[type="submit"] {
 .footer-column p {
     margin: 5px 0;
 }
+
 .button-container {
     text-align: center; /* Centra los elementos horizontalmente */
     margin-top: 20px; /* Agrega un margen superior para separación */
@@ -104,4 +119,5 @@ button[type="submit"] {
 .center-button {
     padding-top: 10px;
     display: inline-block; /* Permite centrar el botón */
+    margin-bottom: 30px; /* Añadir margen inferior para evitar que el botón quede oculto */
 }

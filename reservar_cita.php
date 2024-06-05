@@ -100,6 +100,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
 
 
 <div class="container mt-5">
+<br>
+
     <h2 class="text-center">Registro de Cita</h2>
 
     <?php if (!empty($message)): ?>

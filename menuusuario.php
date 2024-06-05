@@ -35,7 +35,23 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-   
+   /* Estilos para los botones */
+.menu-button {
+    display: block;
+    margin: 20px auto; /* Añadir margen superior e inferior */
+    width: 250px; /* Ancho */
+    height: 60px; /* Altura */
+    font-size: 20px; /* Tamaño de fuente */
+    text-align: center; /* Centrar texto */
+    padding: 15px 30px; /* Aumentar el padding interno */
+}
+
+/* Estilos para el texto explicativo */
+.explanation {
+    text-align: center; /* Centrar texto */
+    margin-top: 20px; /* Margen superior */
+    color: #555; /* Color de texto gris */
+}
     </style>
 </head>
 <body>
@@ -51,7 +67,10 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     </div>
 
     <div class="container">
+        <br>
         <h2>¿Qué operación quieres realizar?</h2>
+        <p class="explanation">Seleccione una opción para continuar. Si tiene alguna duda, no dude en contactar con nosotros.</p>
+
         <div class="button-container mt-3">
             <div class="button-item">
                 <a href="reservar_cita.php" class="btn btn-primary menu-button">
@@ -72,7 +91,6 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
                 <p class="explanation">Póngase en contacto con la administración para resolver cualquier duda o inconveniente.</p>
             </div>
         </div>
-        <p class="explanation">Seleccione una opción para continuar. Si tiene alguna duda, no dude en contactar con nosotros.</p>
     </div>
 
     <!-- Enlace al JS de Bootstrap -->

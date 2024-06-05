@@ -14,17 +14,18 @@ h2 {
 /* Estilos para los botones */
 .menu-button {
     display: block;
-    margin: 20px auto; /* Añadir márgenes superior e inferior */
-    width: 250px; /* Ajusta el ancho según sea necesario */
-    height: 50px; /* Ajusta la altura según sea necesario */
-    font-size: 18px; /* Tamaño de fuente más grande */
-    text-align: center;
+    margin: 20px auto; /* Añadir margen superior e inferior */
+    width: 250px; /* Ancho */
+    height: 60px; /* Altura */
+    font-size: 20px; /* Tamaño de fuente */
+    text-align: center; /* Centrar texto */
+    padding: 15px 30px; /* Aumentar el padding interno */
 }
 
 /* Estilos para el texto explicativo */
 .explanation {
-    text-align: center;
-    margin-top: 20px;
+    text-align: center; /* Centrar texto */
+    margin-top: 20px; /* Margen superior */
     color: #555; /* Color de texto gris */
 }
 

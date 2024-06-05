@@ -21,13 +21,9 @@
 
     /* Estilos para los botones */
     .btn {
-        display: block;
-        width: 200px; /* Ajusta el ancho según sea necesario */
-        text-align: center;
-        margin-top: 20px;
-        height: 60px; /* Altura del botón */
-        font-size: 20px; /* Tamaño de la fuente */
-
+        font-size: 20px; /* Aumentar el tamaño de la fuente */
+        padding: 15px 30px; /* Aumentar el padding interno */
+        margin-top: 20px; /* Espacio entre los botones */
     }
 
     /* Estilos para el texto explicativo */

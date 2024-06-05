@@ -49,3 +49,17 @@ line-height: 1.6;
 .footer-column p {
 margin: 5px 0;
 }
+h2 {
+    text-align: center; /* Centrar texto */
+    margin-top: 20px; /* Margen superior */
+    font-family: Arial, sans-serif; /* Fuente */
+    color: #4CAF50; /* Color verde */
+    border-bottom: 2px solid #81C784; /* Borde inferior verde más claro */
+    padding-bottom: 10px; /* Padding inferior */
+    margin-bottom: 20px; /* Margen inferior para separación reducido */
+}
+.btn {
+    font-size: 20px; /* Aumentar el tamaño de la fuente */
+    padding: 15px 30px; /* Aumentar el padding interno */
+    margin-top: 20px; /* Espacio entre los botones */
+}

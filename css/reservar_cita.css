@@ -42,13 +42,14 @@
 /* Estilos para el título h2 */
 h2 {
     text-align: center; /* Centrar texto */
-    margin-top: 20px; /* Margen superior */
+    margin-top: 40px; /* Margen superior aumentado */
     font-family: Arial, sans-serif; /* Fuente */
     color: #2E7D32; /* Color verde más oscuro */
     border-bottom: 2px solid #81C784; /* Borde inferior verde más claro */
     padding-bottom: 10px; /* Padding inferior */
     margin-bottom: 20px; /* Margen inferior */
 }
+
 
 /* Estilos para los botones del menú */
 .menu-button {
