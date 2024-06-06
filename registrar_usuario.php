@@ -55,11 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="header">
     <!-- Nombre de usuario -->
     <span class="welcome-text">Bienvenido al IES Kursaal</span>
-   
-   <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">  
+   <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo"> 
 
     <!-- Botón para cerrar sesión -->
     <span class="telefono-text">Teléfono: 956670767 – 61</span>
+    <br> <br>
 </div>
 <div class="container">
     <div class="form-container">

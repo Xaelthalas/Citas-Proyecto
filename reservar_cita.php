@@ -26,6 +26,13 @@ $citasReservadas = $citas->obtenerCitasReservadas();
 $message = "";
 $message_type = "";
 
+// Verificar si hay un mensaje de éxito en la sesión
+if (isset($_SESSION['success_message'])) {
+    $message = $_SESSION['success_message'];
+    $message_type = "success";
+    unset($_SESSION['success_message']); // Eliminar el mensaje de la sesión después de mostrarlo
+}
+
 // Verificar si se han enviado los datos del formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_POST["hora"])) {
     // Obtener la fecha y la hora del formulario
@@ -46,9 +53,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
             if (!$citas->tieneCitaPendiente($id_usuario)) {
                 // Reservar la cita
                 if ($citas->reservarCita($id_usuario, $fecha, $hora, 'Pendiente', $motivo)) {
-                    $message = "Se ha realizado el registro correctamente";
-                    $message_type = "success";
+                    $_SESSION['success_message'] = "Se ha realizado el registro correctamente";
                     header("Location: email.php?usuario=$nombre_usuario&fecha=$fecha&hora=$hora&motivo=$motivo");
+                    exit();
                 } else {
                     $message = "Error al registrar la cita. Por favor, inténtelo nuevamente.";
                     $message_type = "danger";
@@ -124,14 +131,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
         </div>
         
         <div class="form-group">
-            <label for="motivo">Motivo de la cita:</label>
-            <select id="motivo" class="form-control" name="motivo">
-                <option value="Matrícula">Matrícula</option>
-                <option value="Becas">Becas</option>
-                <option value="Problemas personales">Problemas personales</option>
-                <option value="Otros">Otros</option>
-            </select>
-        </div>
+    <label for="motivo">Motivo de la cita:</label>
+    <select id="motivo" class="form-control" name="motivo">
+        <option value="Inscripción">Inscripción</option>
+        <option value="Certificados">Solicitud de certificados</option>
+        <option value="Consulta académica">Consulta académica</option>
+        <option value="Becas y ayudas">Becas y ayudas</option>
+        <option value="Cambio de asignaturas">Cambio de asignaturas</option>
+        <option value="Atención a padres">Atención a padres</option>
+        <option value="Otros">Otros</option>
+    </select>
+</div>
+
 
         <button type="submit" class="btn btn-primary menu-button">Reservar Cita</button>
         <button type="button" class="btn btn-secondary menu-button" onclick="window.location.href='menuusuario.php'">Volver</button>
@@ -172,4 +183,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
 </footer>
 </body>
 </html>
-

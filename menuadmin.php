@@ -59,6 +59,7 @@ $citas->actualizarEstadoCitas();
 
     <div class="container">
         <h2>¿Qué operación quieres realizar?</h2>
+        <p class="explanation">Selecciona una opción para continuar.</p>
         <div class="row justify-content-center mt-3">
             <div class="col-md-6 col-sm-12"> <!-- Se muestra en una sola columna en dispositivos pequeños -->
                 <ul class="list-inline text-center">
@@ -78,7 +79,6 @@ $citas->actualizarEstadoCitas();
                 </ul>
             </div>
         </div>
-        <p class="explanation">Selecciona una opción para continuar.</p>
     </div>
 
     <!-- Enlace al JS de Bootstrap -->

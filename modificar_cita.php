@@ -106,12 +106,16 @@ if (isset($_GET['id'])) {
         <div class="form-group">
     <label for="motivo">Motivo de la cita:</label>
     <select id="motivo" class="form-control" name="motivo">
-        <option value="Matrícula">Matrícula</option>
-        <option value="Becas">Becas</option>
-        <option value="Problemas personales">Problemas personales</option>
+        <option value="Inscripción">Inscripción</option>
+        <option value="Certificados">Solicitud de certificados</option>
+        <option value="Consulta académica">Consulta académica</option>
+        <option value="Becas y ayudas">Becas y ayudas</option>
+        <option value="Cambio de asignaturas">Cambio de asignaturas</option>
+        <option value="Atención a padres">Atención a padres</option>
         <option value="Otros">Otros</option>
     </select>
 </div>
+
         <button type="submit" class="btn btn-primary">Modificar Cita</button>
         <button type="button" class="btn btn-secondary" onclick="window.location.href='menuusuario.php'">Volver</button>
     </form>

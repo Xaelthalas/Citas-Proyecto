@@ -55,7 +55,7 @@ if (!empty($fecha) && !empty($hora) && !empty($motivo)) {
 
             // Contenido del correo
             $mail->isHTML(true); // Establecer el formato del correo como HTML
-            $mail->Subject = 'Confirmación de Registro de Cita - IES Kuursal';
+            $mail->Subject = 'Registro de Cita - IES Kuursal';
             $mail->Body    = "
                 <p>Estimado/a usuario/a,</p>
                 <p>Nos complace informarle que su cita ha sido registrada correctamente en el IES Kuursal. A continuación, encontrará los detalles de su cita:</p>

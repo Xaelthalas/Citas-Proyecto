@@ -7,7 +7,7 @@ body {
 .header {
     background-color: #255E1A; /* Color de fondo verde */
     color: white; /* Color de texto blanco */
-    padding: 10px 20px; /* Padding interno */
+    padding: 20px 20px; /* Padding interno */
     display: flex; /* Flexbox para alineación */
     justify-content: space-between; /* Espacio entre elementos */
     align-items: center; /* Alinear elementos verticalmente */
