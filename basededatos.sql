@@ -7,10 +7,10 @@ CREATE TABLE IF NOT EXISTS Usuarios (
     DNI VARCHAR(9) PRIMARY KEY,
     Nombre VARCHAR(50),
     Apellidos VARCHAR(50),
-    Email VARCHAR(100), -- Añadimos el campo Email
+    Email VARCHAR(100), 
     Contraseña VARCHAR(255),
-    Rol VARCHAR(20) NOT NULL DEFAULT 'usuario', -- Añadimos el campo Rol con valor por defecto 'usuario'
-    UNIQUE KEY (Email) -- Añadimos una restricción UNIQUE para el campo Email
+    Rol VARCHAR(20) NOT NULL DEFAULT 'usuario', 
+    UNIQUE KEY (Email) 
 );
 
 -- Verificamos si ya existe un usuario admin
