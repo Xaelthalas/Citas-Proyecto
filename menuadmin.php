@@ -73,7 +73,7 @@ $citas->actualizarEstadoCitas();
                     </li>
                     <li class="list-inline-item mb-2">
                         <a href="comentariosadmin.php" class="btn btn-primary menu-button">
-                            <i class="bi bi-envelope"></i> Ver comentarios
+                            <i class="bi bi-envelope"></i> Ver mensajes
                         </a>
                     </li>
                 </ul>

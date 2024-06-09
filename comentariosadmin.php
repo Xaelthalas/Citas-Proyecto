@@ -46,7 +46,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
         </button>
     </div>
 
-    <h2>Comentarios</h2>
+    <h2>Mensajes</h2>
 
     <div class="container">
     <div class="table-responsive">
