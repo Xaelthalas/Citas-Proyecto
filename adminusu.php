@@ -6,22 +6,17 @@ require "citas.php";
 session_start();
 
 // Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['id_usuario'])) {
-    header("Location: login.php");
-    exit();
-}
+
 
 // Obtener el ID del usuario de la sesión
-$id_usuario = $_SESSION['id_usuario'];
 
 // Crear un objeto de la clase Citas
 $citas = new Citas();
-
+$id_usuario = $_SESSION['id_usuario'];
 if (!$citas->esAdmin($id_usuario)) {
     header("Location: login.php");
     exit();
 }
-
 $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
 ?>
 
@@ -34,12 +29,6 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/adminusu.css">
     <link rel="stylesheet" href="css/header.css">
-    <style>
-        .custom-button {
-            font-size: 1.25rem; /* Tamaño del texto */
-            padding: 10px 20px; /* Espaciado interno */
-        }
-    </style>
 </head>
 <body>
     <div class="header">
@@ -77,7 +66,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <div class="container">
         <div class="row justify-content-center mt-3">
             <div class="col-md-2">
-                <button type="button" class="btn btn-primary btn-lg custom-button" onclick="window.location.href='menuadmin.php'">Volver</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='menuadmin.php'">Volver</button>
             </div>
         </div>
     </div>
