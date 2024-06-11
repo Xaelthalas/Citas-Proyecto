@@ -444,20 +444,41 @@ public function eliminarUsuario($dni_usuario) {
             }
         }
     }
+
+    // Consulta SQL para obtener todos los comentarios asociados al usuario
+    $consulta_comentarios = "SELECT ID FROM Comentarios WHERE DNI_usuario = '$dni_usuario'";
     
-    // Después de eliminar todas las citas, eliminar al usuario
+    // Ejecutar la consulta para obtener los comentarios
+    $resultado_comentarios = $this->ejecuta_SQL($consulta_comentarios);
+
+    // Verificar si se obtuvieron comentarios asociados al usuario
+    if ($resultado_comentarios && $resultado_comentarios->num_rows > 0) {
+        // Iterar sobre cada comentario y eliminarlo
+        while ($fila_comentario = $resultado_comentarios->fetch_assoc()) {
+            $id_comentario = $fila_comentario['ID'];
+            // Consulta SQL para eliminar el comentario actual
+            $consulta_eliminar_comentario = "DELETE FROM Comentarios WHERE ID = '$id_comentario'";
+            // Ejecutar la consulta para eliminar el comentario actual
+            $resultado_eliminar_comentario = $this->ejecuta_SQL($consulta_eliminar_comentario);
+            // Verificar si se eliminó el comentario actual correctamente
+            if (!$resultado_eliminar_comentario) {
+                echo "Error al eliminar el comentario con ID: $id_comentario";
+                return; // Terminar la función si hay un error al eliminar un comentario
+            }
+        }
+    }
+
     // Consulta SQL para eliminar el usuario
     $consulta_eliminar_usuario = "DELETE FROM Usuarios WHERE DNI = '$dni_usuario'";
-    
-    // Ejecutar la consulta para eliminar el usuario
     $resultado_eliminar_usuario = $this->ejecuta_SQL($consulta_eliminar_usuario);
-    
-    // Verificar si se realizó la eliminación correctamente
-    if ($resultado_eliminar_usuario) {
-        echo "Usuario eliminado correctamente.";
-    } else {
-        echo "Error al eliminar el usuario.";
+
+    // Verificar si se eliminó el usuario correctamente
+    if (!$resultado_eliminar_usuario) {
+        echo "Error al eliminar el usuario con DNI: $dni_usuario";
+        return; // Terminar la función si hay un error al eliminar el usuario
     }
+
+    echo "Usuario y todos sus datos asociados eliminados con éxito.";
 }
 
 
