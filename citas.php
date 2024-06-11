@@ -229,8 +229,8 @@ public function altaUsuario($dni, $nombre, $apellidos, $email, $contrasena, $rol
         return false; // El email no tiene un formato válido
     }
 
-    // Validar el formato del DNI (8 dígitos seguidos de una letra)
-    if (!preg_match('/^\d{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i', $dni)) {
+    // Validar el formato del DNI español (8 dígitos seguidos de una letra)
+    if (!$this->validarDNI($dni)) {
         echo "El DNI no tiene un formato válido español.";
         return false; // El DNI no tiene un formato válido español
     }
@@ -239,6 +239,31 @@ public function altaUsuario($dni, $nombre, $apellidos, $email, $contrasena, $rol
     $sql = "INSERT INTO Usuarios (DNI, Nombre, Apellidos, Email, Contraseña, Rol) VALUES ('$dni', '$nombre', '$apellidos', '$email', '$contrasena', '$rol')";
     // Ejecutamos la consulta
     return $this->ejecuta_SQL($sql);
+}
+
+// Método para validar el DNI español
+private function validarDNI($dni) {
+    // Comprobamos que tenga 9 caracteres (8 dígitos y 1 letra)
+    if (strlen($dni) != 9) {
+        return false;
+    }
+
+    // Extraemos el número del DNI (los primeros 8 caracteres)
+    $numeroDNI = substr($dni, 0, 8);
+
+    // Extraemos la letra del DNI (el último caracter)
+    $letraDNI = strtoupper(substr($dni, -1));
+
+    // Calculamos la letra correspondiente al número del DNI
+    $letrasValidas = 'TRWAGMYFPDXBNJZSQVHLCKE';
+    $letraCalculada = $letrasValidas[$numeroDNI % 23];
+
+    // Comparamos la letra calculada con la letra del DNI proporcionada
+    if ($letraDNI != $letraCalculada) {
+        return false;
+    }
+
+    return true;
 }
 
     
