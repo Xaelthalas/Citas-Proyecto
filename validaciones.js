@@ -4,7 +4,7 @@ function validarFormulario() {
     var contrasena = document.getElementById("contrasena").value;
 
     // Expresión regular para validar el formato del DNI (8 dígitos y una letra)
-    var dniRegex = /^\d{8}[a-zA-Z]$/;
+    var dniRegex = /^\d{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i;
 
     // Expresión regular para validar el formato del correo electrónico
     var emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
