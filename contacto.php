@@ -35,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    
     <link rel="stylesheet" href="css/contacto.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
@@ -46,7 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
-  
+    <style>
+        .custom-button {
+            font-size: 1.25rem; /* Tamaño del texto */
+            padding: 10px 20px; /* Espaciado interno */
+        }
+    </style>
 </head>
 <body>
 
@@ -62,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="container form-container">
-        <h2 align="center" >¡Contáctanos!</h2>
+        <h2 align="center">¡Contáctanos!</h2>
         <?php if (isset($mensaje)): ?>
             <div class="alert alert-info" role="alert">
                 <?php echo $mensaje; ?>
@@ -77,9 +81,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="cuerpo">Mensaje:</label>
                 <textarea class="form-control" id="cuerpo" name="cuerpo" rows="5" required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='menuusuario.php'">Volver</button>
-
+            <button type="submit" class="btn btn-primary custom-button">Enviar</button>
+            <button type="button" class="btn btn-secondary custom-button" onclick="window.location.href='menuusuario.php'">Volver</button>
         </form>
     </div>
 
@@ -88,28 +91,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-column">
-            <p><strong>IES KURSAAL</strong></p>
-            <p>Avd. Virgen de Europa 4, 11202 Algeciras (Cádiz)</p>
-            <p>Teléfono: 956670767 – 61</p>
-            <p>Email: jefatura@ieskursaal.es</p>
-            <p>Código Centro: 11000371</p>
+        <div class="footer-content">
+            <div class="footer-column">
+                <p><strong>IES KURSAAL</strong></p>
+                <p>Avd. Virgen de Europa 4, 11202 Algeciras (Cádiz)</p>
+                <p>Teléfono: 956670767 – 61</p>
+                <p>Email: jefatura@ieskursaal.es</p>
+                <p>Código Centro: 11000371</p>
+            </div>
+            <div class="footer-column">
+                <p><strong>Información Legal</strong></p>
+                <p>Aviso Legal</p>
+                <p>Políticas de Cookies</p>
+                <p>Políticas de Privacidad</p>
+            </div>
+            <div class="footer-column">
+                <p><strong>SECRETARÍA</strong></p>
+                <p>Secretaría Virtual</p>
+                <p>Calendario Escolar</p>
+                <p>Escolarización Telemática</p>
+                <p>Escolarización con Impreso</p>
+            </div>
         </div>
-        <div class="footer-column">
-            <p><strong>Información Legal</strong></p>
-            <p>Aviso Legal</p>
-            <p>Políticas de Cookies</p>
-            <p>Políticas de Privacidad</p>
-        </div>
-        <div class="footer-column">
-            <p><strong>SECRETARÍA</strong></p>
-            <p>Secretaría Virtual</p>
-            <p>Calendario Escolar</p>
-            <p>Escolarización Telemática</p>
-            <p>Escolarización con Impreso</p>
-        </div>
-    </div>
-</footer>
+    </footer>
 </body>
 </html>

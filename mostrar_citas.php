@@ -29,6 +29,12 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Citas</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-button {
+            font-size: 1.25rem; /* Tamaño del texto */
+            padding: 10px 20px; /* Espaciado interno */
+        }
+    </style>
 </head>
 <body>
 
@@ -70,40 +76,39 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     </div>
 
     <div class="container">
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-4 text-center"> <!-- Agregado 'text-center' para centrar el contenido -->
-            <button type="button" class="btn btn-primary" onclick="window.location.href='menuusuario.php'">Volver</button>
-            <p class="explanation">Haz clic en "Volver" para regresar al menú principal.</p>
+        <div class="row justify-content-center mt-3">
+            <div class="col-md-4 text-center">
+                <button type="button" class="btn btn-primary btn-lg custom-button" onclick="window.location.href='menuusuario.php'">Volver</button>
+                <p class="explanation">Haz clic en "Volver" para regresar al menú principal.</p>
+            </div>
         </div>
     </div>
-</div>
-
 
     <!-- Enlace al JS de Bootstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-column">
-            <p><strong>IES KURSAAL</strong></p>
-            <p>Avd. Virgen de Europa 4, 11202 Algeciras (Cádiz)</p>
-            <p>Teléfono: 956670767 – 61</p>
-            <p>Email: jefatura@ieskursaal.es</p>
-            <p>Código Centro: 11000371</p>
+        <div class="footer-content">
+            <div class="footer-column">
+                <p><strong>IES KURSAAL</strong></p>
+                <p>Avd. Virgen de Europa 4, 11202 Algeciras (Cádiz)</p>
+                <p>Teléfono: 956670767 – 61</p>
+                <p>Email: jefatura@ieskursaal.es</p>
+                <p>Código Centro: 11000371</p>
+            </div>
+            <div class="footer-column">
+                <p><strong>Información Legal</strong></p>
+                <p>Aviso Legal</p>
+                <p>Políticas de Cookies</p>
+                <p>Políticas de Privacidad</p>
+            </div>
+            <div class="footer-column">
+                <p><strong>SECRETARÍA</strong></p>
+                <p>Secretaría Virtual</p>
+                <p>Calendario Escolar</p>
+                <p>Escolarización Telemática</p>
+                <p>Escolarización con Impreso</p>
+            </div>
         </div>
-        <div class="footer-column">
-            <p><strong>Información Legal</strong></p>
-            <p>Aviso Legal</p>
-            <p>Políticas de Cookies</p>
-            <p>Políticas de Privacidad</p>
-        </div>
-        <div class="footer-column">
-            <p><strong>SECRETARÍA</strong></p>
-            <p>Secretaría Virtual</p>
-            <p>Calendario Escolar</p>
-            <p>Escolarización Telemática</p>
-            <p>Escolarización con Impreso</p>
-        </div>
-    </div>
-</footer>
+    </footer>
 </body>
 </html>
