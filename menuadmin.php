@@ -34,7 +34,7 @@ $citas->actualizarEstadoCitas();
     
     <link rel="stylesheet" href="css/menuadmin.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="icon" href="logo\logo-ies-kursaal.png" type="image/x-icon">
+    <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú de Usuario</title>
@@ -49,7 +49,7 @@ $citas->actualizarEstadoCitas();
     <div class="header">
         <!-- Nombre de usuario -->
         <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
-        <img src="logo\logo-ies-kursaal.png" alt="Logo" class="header-logo">
+        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
 
         <!-- Botón para cerrar sesión -->
         <button class="btn btn-danger" onclick="window.location.href='cerrar_sesion.php'">
