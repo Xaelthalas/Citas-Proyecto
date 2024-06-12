@@ -29,12 +29,13 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/adminusu.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="icon" href="logo\logo-ies-kursaal.png" type="image/x-icon">
 </head>
 <body>
     <div class="header">
         <!-- Nombre de usuario -->
         <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
-        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+        <img src="logo\logo-ies-kursaal.png" alt="Logo" class="header-logo">
         <!-- Botón para cerrar sesión -->
         <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión

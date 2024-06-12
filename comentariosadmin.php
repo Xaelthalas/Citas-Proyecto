@@ -26,6 +26,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     
     <link rel="stylesheet" href="css/comentariosadmin.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="icon" href="logo\logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comentarios Administrador</title>
@@ -38,7 +39,7 @@ $nombre_usuario = $citas->obtenerNombreUsuario($id_usuario);
     <div class="header">
         <!-- Nombre de usuario -->
         <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
-        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+        <img src="logo\logo-ies-kursaal.png" alt="Logo" class="header-logo">
 
         <!-- Botón para cerrar sesión -->
         <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">

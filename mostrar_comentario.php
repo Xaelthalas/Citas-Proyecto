@@ -62,6 +62,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/mostrar_comentario.css">
     <meta charset="UTF-8">
+    <link rel="icon" href="logo\logo-ies-kursaal.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle de Comentario</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -72,7 +73,7 @@ if (isset($_GET['id'])) {
 <div class="header">
         <!-- Nombre de usuario -->
         <span class="welcome-text">Bienvenido, Administrador</span>
-        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+        <img src="logo\logo-ies-kursaal.png" alt="Logo" class="header-logo">
         <!-- Botón para cerrar sesión -->
         <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">
             <i class="bi bi-box-arrow-right"></i> Cerrar Sesión

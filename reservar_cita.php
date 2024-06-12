@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
    
     <link rel="stylesheet" href="css/reservar_cita.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
+    <link rel="icon" href="logo\logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Cita</title>
@@ -100,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
     <!-- Nombre de usuario -->
     <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
     <!-- Logo centrado -->
-    <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+    <img src="logo\logo-ies-kursaal.png" alt="Logo" class="header-logo">
     <!-- Botón para cerrar sesión -->
     <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">Cerrar Sesión</button>
 </div>
@@ -156,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["fecha"]) && isset($_PO
     window.citasReservadas = <?php echo json_encode($citasReservadas); ?>;
 </script>
 <!-- Enlace al archivo JavaScript separado -->
-<script src="calendario.js"></script>
+<script src="js\calendario.js"></script>
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-column">

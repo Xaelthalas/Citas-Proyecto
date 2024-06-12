@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="es">
 <head>
     <link rel="stylesheet" href="css/login.css">
-    <link rel="icon" href="logo-ies-kursaal.png" type="image/x-icon">
+    <link rel="icon" href="logo\logo-ies-kursaal.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="header">
     <!-- Nombre de usuario -->
     <span class="welcome-text">Bienvenido al IES Kursaal</span>
-    <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+    <img src="logo\logo-ies-kursaal.png" alt="Logo" class="header-logo">
 
     <!-- Botón para cerrar sesión -->
     <span class="telefono-text">Teléfono: 956670767 – 61</span>

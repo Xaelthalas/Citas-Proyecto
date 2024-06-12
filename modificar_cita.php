@@ -77,7 +77,7 @@ if (isset($_GET['id'])) {
 <div class="header">
     <!-- Nombre de usuario -->
     <span class="welcome-text">Bienvenido, <?php echo $nombre_usuario; ?></span>
-    <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+    <img src="logo\logo-ies-kursaal.png" alt="Logo" class="header-logo">
 
     <!-- Botón para cerrar sesión -->
     <button class="logout-button" onclick="window.location.href='cerrar_sesion.php'">Cerrar Sesión</button>
@@ -125,7 +125,7 @@ if (isset($_GET['id'])) {
 </script>
 <!-- Enlace al JS de Vanilla JS Datepicker -->
 <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker.min.js"></script>
-<script src="calendario.js"></script>
+<script src="js\calendario.js"></script>
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-column">
