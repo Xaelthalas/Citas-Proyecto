@@ -1,4 +1,3 @@
-
 <?php
 require "citas.php";
 
@@ -49,7 +48,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <script src="validaciones.js"></script>
     <link rel="stylesheet" href="css/registrar_usuario.css">
-
+    <style>
+        /* Estilo personalizado para los mensajes de error */
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
 <div class="header">
@@ -68,11 +85,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="message-container">
             <?php if (!empty($success_message)): ?>
                 <!-- Mostrar el mensaje de éxito si está definido -->
-                <div class="alert alert-success"><?php echo $success_message; ?></div>
+                <div class="alert alert-success text-center"><?php echo $success_message; ?></div>
             <?php endif; ?>
             <?php if (!empty($error_message)): ?>
                 <!-- Mostrar el mensaje de error si está definido -->
-                <div class="alert alert-danger"><?php echo $error_message; ?></div>
+                <div class="alert alert-danger text-center"><?php echo $error_message; ?></div>
             <?php endif; ?>
         </div>
         <form action="registrar_usuario.php" method="POST" onsubmit="return validarFormulario()">
@@ -101,16 +118,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="button-container">
                 <button type="submit" class="btn btn-primary">
                     <i class="bi bi-person-plus"></i> Registrarse
-
                 </button>
                 <div class="center-button">
                     <button type="button" class="btn btn-secondary menu-button" onclick="window.location.href='menuusuario.php'">Volver</button>
                 </div>
             </div>
         </form>
-       
-
-
     </div>
 </div>
 <footer class="footer">
