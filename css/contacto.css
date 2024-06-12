@@ -63,3 +63,12 @@ h2 {
     padding: 15px 30px; /* Aumentar el padding interno */
     margin-top: 20px; /* Espacio entre los botones */
 }
+.menu-button {
+    display: block; /* Mostrar como bloque */
+    margin: 20px auto; /* Margen superior e inferior automático */
+    width: 100%; /* Ancho completo */
+    max-width: 400px; /* Ancho máximo */
+    height: 60px; /* Altura */
+    font-size: 20px; /* Tamaño de fuente */
+    text-align: center; /* Centrar texto */
+}
