@@ -71,3 +71,12 @@ h2 {
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
+.menu-button {
+    display: block; /* Mostrar como bloque */
+    margin: 20px auto; /* Margen superior e inferior automático */
+    width: 100%; /* Ancho completo */
+    max-width: 400px; /* Ancho máximo */
+    height: 60px; /* Altura */
+    font-size: 20px; /* Tamaño de fuente */
+    text-align: center; /* Centrar texto */
+}

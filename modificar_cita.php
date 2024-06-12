@@ -116,8 +116,8 @@ if (isset($_GET['id'])) {
     </select>
 </div>
 
-        <button type="submit" class="btn btn-primary">Modificar Cita</button>
-        <button type="button" class="btn btn-secondary" onclick="window.location.href='menuusuario.php'">Volver</button>
+        <button type="submit" class="btn btn-primary menu-button">Modificar Cita</button>
+        <button type="button" class="btn btn-secondary menu-button" onclick="window.location.href='menuusuario.php'">Volver</button>
     </form>
 </div>
 <script>
