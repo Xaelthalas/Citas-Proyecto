@@ -2,9 +2,9 @@
 // Clase Citas para gestionar las consultas a la base de datos
 class Citas {
     // Propiedades para la conexión a la base de datos
-    private $host = "localhost";
-    private $usuario = "root";
-    private $contraseña = "";
+    private $host = "10.0.2.16";
+    private $usuario = "kali";
+    private $contraseña = "kali";
     private $base_de_datos = "ReservasCitas"; // Reemplaza por el nombre de tu base de datos
 
     // Propiedad para la conexión a la base de datos

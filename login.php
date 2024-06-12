@@ -2,6 +2,8 @@
 session_start();
 require "citas.php";
 
+$error_message = ""; // Variable para almacenar el mensaje de error
+
 // Si se ha enviado el formulario de inicio de sesión
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificamos si se recibieron datos de nombre de usuario y contraseña
@@ -32,11 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit(); // Detener la ejecución del script después de redirigir
         } else {
             // Credenciales incorrectas, mostrar un mensaje de error
-            echo "<div class='error'>Nombre de usuario o contraseña incorrectos</div>";
+            $error_message = "Nombre de usuario o contraseña incorrectos";
         }
     } else {
         // Datos de inicio de sesión incompletos
-        echo "<div class='error'>Por favor, ingresa nombre de usuario y contraseña</div>";
+        $error_message = "Por favor, ingresa nombre de usuario y contraseña";
     }
 }
 ?>
@@ -53,39 +55,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Enlace a la biblioteca de iconos de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
-   
+    <style>
+        .alert-danger {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div class="header">
-        <!-- Nombre de usuario -->
-        <span class="welcome-text">Bienvenido al IES Kursaal</span>
-        <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
+    <!-- Nombre de usuario -->
+    <span class="welcome-text">Bienvenido al IES Kursaal</span>
+    <img src="logo-ies-kursaal.png" alt="Logo" class="header-logo">
 
-        <!-- Botón para cerrar sesión -->
-        <span class="telefono-text">Teléfono: 956670767 – 61</span>
-
-    </div>
-    <div class="container">
-        <div class="login-container">
-            <h2>Iniciar Sesión</h2>
-            <form action="login.php" method="POST">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="username" placeholder="Dni" required>
-                </div>
-                <div class="form-group" >
-                    <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">
-                    <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
-                </button>
-                <a href="registrar_usuario.php" class="btn btn-secondary btn-block">
+    <!-- Botón para cerrar sesión -->
+    <span class="telefono-text">Teléfono: 956670767 – 61</span>
+</div>
+<div class="container">
+    <div class="login-container">
+        <h2>Iniciar Sesión</h2>
+        <!-- Contenedor para mensajes de error -->
+        <?php if (!empty($error_message)): ?>
+            <div class="alert alert-danger"><?php echo $error_message; ?></div>
+        <?php endif; ?>
+        <form action="login.php" method="POST">
+            <div class="form-group">
+                <input type="text" class="form-control" name="username" placeholder="Dni" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+                <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+            </button>
+            <a href="registrar_usuario.php" class="btn btn-secondary btn-block">
                 <i class="bi bi-person-plus"></i> Registrarse
             </a>
-            </form>
-            
-        </div>
+        </form>
     </div>
-    <footer class="footer">
+</div>
+<footer class="footer">
     <div class="footer-content">
         <div class="footer-column">
             <p><strong>IES KURSAAL</strong></p>
@@ -111,4 +125,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </footer>
 </body>
 </html>
-
